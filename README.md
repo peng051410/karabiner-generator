@@ -18,6 +18,7 @@ with:
 If variable starts with `alf_`, replace the variable:
 
 `alf_search_lobsters = 'lobsters', 'nikivi.search-the-web'`
+
 with:
 
 `osascript -e 'tell application "Alfred 3" to run trigger "lobsters" in workflow "nikivi.search-the-web" with argument ""'`
@@ -25,16 +26,19 @@ with:
 If variable does not start with either `alf_` or `km_`, save whatever string is added to the var.
 
 ### Sticky key
-Make `s -> a` trigger whatever is in km_clone_github_repo variable.
+Will make `s -> a` trigger whatever is in km_clone_github_repo variable.
 
 `s.a = km_clone_github_repo`
 
-Will make `s -> b` write `TODO: ` as series of chars. (S) = Shift being held down. (CT) = Ctrl beild held down.
-(S/CT) = Shift + Ctrl being held down
+Will make `s -> b` write `TODO: ` as series of chars.
+
 `s.b = T (S) | O (S) | D (S) | O (S) | : | Space`
+
+Where (S) = Shift being held down. (CT) = Ctrl beild held down. (S/CT) = Shift + Ctrl being held down. And so on.
 
 ### Simultaneous keys
 Will make j + k pressed together trigger km_clone_github_repo variable.
+
 `j/k = km_clone_github_repo`
 
 ## Contributing
