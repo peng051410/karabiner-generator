@@ -22,5 +22,5 @@ package main
 // s.b = T (S) | O (S) | D (S) | O (S) | : | Space
 
 // TODO: define simultaneous keys
-// Will make j + k pressed together trigger km_screenshot_to_inbox variable.
+// Will make j + k pressed together trigger km_clone_github_repo variable.
 // j/k = km_clone_github_repo
