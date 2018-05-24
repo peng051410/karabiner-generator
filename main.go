@@ -14,7 +14,7 @@ package main
 // If variable does not start with either 'alf_' or 'km_', save whatever string is added to the var.
 
 // TODO: define sticky key
-// Will make s -> a trigger whatever is in 'g: clone GitHub repo' variable.
+// Will make s -> trigger whatever is in km_clone_github_repo variable.
 // s.a = km_clone_github_repo
 
 // Will make s -> b write 'TODO: ' as series of chars. (S) = Shift being held down. (CT) = Ctrl beild held down.
