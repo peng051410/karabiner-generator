@@ -25,8 +25,8 @@ with:
 
 If variable does not start with either `alf_` or `km_`, save whatever string is added to the var.
 
-### Sticky key
-Will make `s -> a` trigger whatever is in km_clone_github_repo variable.
+### Sticky keys
+Will make s -> a trigger whatever is in km_clone_github_repo variable.
 
 `s.a = km_clone_github_repo`
 
