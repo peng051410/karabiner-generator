@@ -35,7 +35,7 @@ end
 
 def sticky_w()
   puts JSON.pretty_generate(
-        'description' => 'gen: shell w - apps',
+        'description' => 'gen: sticky w - apps',
         'manipulators' => [
             shell('w', 'k', km("open: safari")),
             shell('w', 'i', km("open: chrome")),
@@ -61,7 +61,7 @@ end
 
 def sticky_s()
   puts JSON.pretty_generate(
-        'description' => 'gen: shell s - essential',
+        'description' => 'gen: sticky s - essential',
         'manipulators' => [
           shell('s', 'f', 'return_or_enter'),
           shell('s', 'j', 'down_arrow'),
@@ -76,10 +76,34 @@ end
 
 def sticky_q()
   puts JSON.pretty_generate(
-        'description' => 'gen: shell q - cmd + shift',
+        'description' => 'gen: sticky q - cmd + shift',
         'manipulators' => [
           key("q", "w", "w", ["command", "shift"]),
+          key("q", "e", "e", ["command", "shift"]),
+          key("q", "r", "r", ["command", "shift"]),
           key("q", "t", "t", ["command", "shift"]),
+          key("q", "y", "y", ["command", "shift"]),
+          key("q", "u", "u", ["command", "shift"]),
+          key("q", "i", "i", ["command", "shift"]),
+          key("q", "o", "o", ["command", "shift"]),
+          key("q", "p", "p", ["command", "shift"]),
+          key("q", "a", "a", ["command", "shift"]),
+          key("q", "s", "s", ["command", "shift"]),
+          key("q", "d", "d", ["command", "shift"]),
+          key("q", "f", "f", ["command", "shift"]),
+          key("q", "g", "g", ["command", "shift"]),
+          key("q", "h", "h", ["command", "shift"]),
+          key("q", "j", "j", ["command", "shift"]),
+          key("q", "k", "k", ["command", "shift"]),
+          key("q", "l", "l", ["command", "shift"]),
+          key("q", "z", "z", ["command", "shift"]),
+          key("q", "x", "x", ["command", "shift"]),
+          key("q", "c", "c", ["command", "shift"]),
+          key("q", "v", "v", ["command", "shift"]),
+          key("q", "b", "b", ["command", "shift"]),
+          key("q", "n", "n", ["command", "shift"]),
+          key("q", "m", "m", ["command", "shift"]),
+          key("q", "comma", "comma", ["command", "shift"]),
         ].flatten,
   )
 end
