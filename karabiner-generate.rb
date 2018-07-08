@@ -35,60 +35,55 @@ end
 
 def sticky_w()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky w - apps',
+        'description' => 'gen: shell w - apps',
         'manipulators' => [
-            sticky('w', 'k', km("open: safari")),
-            sticky('w', 'i', km("open: chrome")),
-            sticky('w', 'n', km("open: bee")),
-            sticky('w', 'h', km("open: xcode")),
-            sticky('w', 't', km("open: console")),
-            sticky('w', 'period', km("open: karabiner elements")),
-            sticky('w', 'comma', km("open: spotify")),
-            sticky('w', 'v', km("open: mindnode")),
-            sticky('w', 'b', km("open: bettertouchtool")),
-            sticky('w', 'r', km("open: fantastical")),
-            sticky('w', 'e', km("open: trello")),
-            sticky('w', 'g', km("open: snippetslab")),
-            sticky('w', 'f', km("open: 2do")),
-            sticky('w', 'j', km("open: iterm")),
-            sticky('w', 'l', km("open: sublime text")),
-            sticky('w', 'semicolon', km("open: vs code")),
-            sticky('w', 'o', km("open: keyboard maestro")),
+            shell('w', 'k', km("open: safari")),
+            shell('w', 'i', km("open: chrome")),
+            shell('w', 'n', km("open: bee")),
+            shell('w', 'h', km("open: xcode")),
+            shell('w', 't', km("open: console")),
+            shell('w', 'period', km("open: karabiner elements")),
+            shell('w', 'comma', km("open: spotify")),
+            shell('w', 'v', km("open: mindnode")),
+            shell('w', 'b', km("open: bettertouchtool")),
+            shell('w', 'r', km("open: fantastical")),
+            shell('w', 'e', km("open: trello")),
+            shell('w', 'g', km("open: snippetslab")),
+            shell('w', 'f', km("open: 2do")),
+            shell('w', 'j', km("open: iterm")),
+            shell('w', 'l', km("open: sublime text")),
+            shell('w', 'semicolon', km("open: vs code")),
+            shell('w', 'o', km("open: keyboard maestro")),
+            shell('w', 'p', alfred('google','net.deanishe.alfred-searchio.old')),
         ].flatten,
   )
 end
 
 def sticky_s()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky s - essential',
+        'description' => 'gen: shell s - essential',
         'manipulators' => [
-          sticky('s', 'f', 'return_or_enter'),
-          sticky('s', 'j', 'down_arrow'),
-          sticky('s', 'k', 'up_arrow'),
-          sticky('s', 'h', 'left_arrow'),
-          sticky('s', 'l', 'right_arrow'),
-          sticky('s', 'l', 'right_arrow'),
-          sticky('s', 'm', 'right_arrow', 'left_command'),
+          shell('s', 'f', 'return_or_enter'),
+          shell('s', 'j', 'down_arrow'),
+          shell('s', 'k', 'up_arrow'),
+          shell('s', 'h', 'left_arrow'),
+          shell('s', 'l', 'right_arrow'),
+          shell('s', 'l', 'right_arrow'),
+          shell('s', 'm', 'right_arrow', 'left_command'),
         ].flatten,
   )
 end
 
 def sticky_q()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky q - cmd + shift',
+        'description' => 'gen: shell q - cmd + shift',
         'manipulators' => [
-          sticky("q", "w", "w", [], ["command", "shift"]),
+          key("q", "w", "w", [], ["command", "shift"]),
         ].flatten,
   )
 end
 
-def sticky(held_key, trigger_key, action, mandotary_modifiers=[], to_modifiers=[])
-  if action.start_with? 'osascript'
-    action = [{'shell_command' => action}]
-  else
-      action = [{'key_code' => action}]
-  end
-
+def shell(held_key, trigger_key, action)
   data = []
 
   ############################################################
@@ -97,10 +92,11 @@ def sticky(held_key, trigger_key, action, mandotary_modifiers=[], to_modifiers=[
     'type' => 'basic',
     'from' => {
       'key_code' => trigger_key,
-      'modifiers' => Karabiner.from_modifiers(mandotary_modifiers, ['any']),
+      'modifiers' => Karabiner.from_modifiers([], ['any']),
     },
-    'to' => action,
-    'modifiers' => to_modifiers,
+    'to' => [
+     'shell_command' => action,
+    ],
     'conditions' => [Karabiner.variable_if(held_key, 1)],
   }
 
@@ -126,7 +122,62 @@ def sticky(held_key, trigger_key, action, mandotary_modifiers=[], to_modifiers=[
     },
     'to' => [
       Karabiner.set_variable(held_key, 1),
-    ].concat(action),
+      'shell_command' => action,
+    ],
+    'parameters' => {
+      'basic.simultaneous_threshold_milliseconds' => PARAMETERS[:simultaneous_threshold_milliseconds],
+    },
+  }
+
+  data << h
+
+  ############################################################
+
+  data
+end
+
+def key(held_key, trigger_key, key_code, mandotary_modifiers=[], to_modifiers=[])
+  data = []
+
+  ############################################################
+
+  h = {
+    'type' => 'basic',
+    'from' => {
+      'key_code' => trigger_key,
+      'modifiers' => Karabiner.from_modifiers(mandotary_modifiers, ['any']),
+    },
+    'to' => [
+     'key_code' => key_code,
+     'modifiers' => to_modifiers,
+    ],
+    'conditions' => [Karabiner.variable_if(held_key, 1)],
+  }
+
+  data << h
+
+  ############################################################
+
+  h = {
+    'type' => 'basic',
+    'from' => {
+      'simultaneous' => [
+        { 'key_code' => held_key},
+        { 'key_code' => trigger_key},
+      ],
+      'simultaneous_options' => {
+        'key_down_order' => 'strict',
+        'key_up_order' => 'strict_inverse',
+        'to_after_key_up' => [
+          Karabiner.set_variable(held_key, 0),
+        ],
+      },
+      'modifiers' => Karabiner.from_modifiers([], ['any']),
+    },
+    'to' => [
+      Karabiner.set_variable(held_key, 1),
+      'key_code' => key_code,
+    ],
     'parameters' => {
       'basic.simultaneous_threshold_milliseconds' => PARAMETERS[:simultaneous_threshold_milliseconds],
     },
