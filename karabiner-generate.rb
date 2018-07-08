@@ -19,9 +19,18 @@ def alfred(trigger, workflow)
 end
 
 def main
-    sticky_w()
-    puts ','
-    sticky_s()
+  sticky_q()
+end
+
+def swapkeys()
+    puts JSON.pretty_generate(
+        'description' => 'swap keys',
+        'manipulators' => [
+            swapkey("semicolon", "semicolon", nil, ["caps_lock"], ["left_shift"]),
+            swapkey("semicolon", "semicolon", ["shift"], ['any'], nil), # shift + : -> ;
+        ].flatten,
+  )
+
 end
 
 def sticky_w()
@@ -37,7 +46,14 @@ def sticky_w()
             sticky('w', 'comma', km("open: spotify")),
             sticky('w', 'v', km("open: mindnode")),
             sticky('w', 'b', km("open: bettertouchtool")),
-            sticky('w', 'caps_lock', km("open: finder")),
+            sticky('w', 'r', km("open: fantastical")),
+            sticky('w', 'e', km("open: trello")),
+            sticky('w', 'g', km("open: snippetslab")),
+            sticky('w', 'f', km("open: 2do")),
+            sticky('w', 'j', km("open: iterm")),
+            sticky('w', 'l', km("open: sublime text")),
+            sticky('w', 'semicolon', km("open: vs code")),
+            sticky('w', 'o', km("open: keyboard maestro")),
         ].flatten,
   )
 end
@@ -57,7 +73,17 @@ def sticky_s()
   )
 end
 
-def sticky(sticky_key, action_key, action, modifiers=nil)
+def sticky_q()
+  puts JSON.pretty_generate(
+        'description' => 'gen: sticky q - cmd + shift',
+        'manipulators' => [
+          sticky("q", "w", "w", ["command", "shift"]),
+          sticky("q", "w", alfred("google", "net.deanishe.alfred-searchio.old")),
+        ].flatten,
+  )
+end
+
+def sticky(held_key, trigger_key, action, mandotary_modifiers=[], to_modifiers=[])
   if action.start_with? 'osascript'
     action = [{'shell_command' => action}]
   else
@@ -71,11 +97,12 @@ def sticky(sticky_key, action_key, action, modifiers=nil)
   h = {
     'type' => 'basic',
     'from' => {
-      'key_code' => action_key,
-      'modifiers' => Karabiner.from_modifiers([], ['any']),
+      'key_code' => trigger_key,
+      'modifiers' => Karabiner.from_modifiers(mandotary_modifiers, ['any']),
     },
     'to' => action,
-    'conditions' => [Karabiner.variable_if('launcher', 1)],
+    'modifiers' => to_modifiers,
+    'conditions' => [Karabiner.variable_if(held_key, 1)],
   }
 
   data << h
@@ -86,8 +113,8 @@ def sticky(sticky_key, action_key, action, modifiers=nil)
     'type' => 'basic',
     'from' => {
       'simultaneous' => [
-        { 'key_code' => sticky_key},
-        { 'key_code' => action_key },
+        { 'key_code' => held_key},
+        { 'key_code' => trigger_key},
       ],
       'simultaneous_options' => {
         'key_down_order' => 'strict',
@@ -99,7 +126,7 @@ def sticky(sticky_key, action_key, action, modifiers=nil)
       'modifiers' => Karabiner.from_modifiers([], ['any']),
     },
     'to' => [
-      Karabiner.set_variable('launcher', 1),
+      Karabiner.set_variable(held_key, 1),
     ].concat(action),
     'parameters' => {
       'basic.simultaneous_threshold_milliseconds' => PARAMETERS[:simultaneous_threshold_milliseconds],
@@ -111,6 +138,25 @@ def sticky(sticky_key, action_key, action, modifiers=nil)
   ############################################################
 
   data
+end
+
+def swapkey(from_key, to_key, mandotary_modifiers=nil, optional_modifiers=['any'], to_modifiers=nil)
+  data = []
+
+  h = {
+    'type' => 'basic',
+    'from' => {
+      'key_code' => from_key,
+      'modifiers' => Karabiner.from_modifiers(mandotary_modifiers, optional_modifiers),
+    },
+    'to' => [
+     'key_code' => to_key,
+     'modifiers' => to_modifiers,
+    ]
+  }
+
+  data << h
+
 end
 
 main
