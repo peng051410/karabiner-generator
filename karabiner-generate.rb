@@ -101,7 +101,7 @@ def sticky(held_key, trigger_key, action, mandotary_modifiers=[], to_modifiers=[
       'modifiers' => Karabiner.from_modifiers(mandotary_modifiers, ['any']),
     },
     'to' => action,
-    'modifiers' => to_modifiers,
+    'modifiers' => {to_modifiers},
     'conditions' => [Karabiner.variable_if(held_key, 1)],
   }
 
