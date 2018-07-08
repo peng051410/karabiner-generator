@@ -77,8 +77,8 @@ def sticky_q()
   puts JSON.pretty_generate(
         'description' => 'gen: sticky q - cmd + shift',
         'manipulators' => [
-          sticky("q", "w", "w", ["command", "shift"]),
-          sticky("q", "w", alfred("google", "net.deanishe.alfred-searchio.old"), [], []),
+          sticky("q", "w", "w", [], ["command", "shift"]),
+          sticky("q", "k", alfred("google", "net.deanishe.alfred-searchio.old")),
         ].flatten,
   )
 end
