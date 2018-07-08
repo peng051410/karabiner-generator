@@ -52,7 +52,7 @@ def sticky_s()
           key('h', 'left_arrow'),
           key('l', 'right_arrow'),
           key('l', 'right_arrow'),
-          key('m', 'right_arrow', 'command'),
+          key('m', 'right_arrow', 'left_command'),
         ].flatten,
   )
 end
@@ -118,11 +118,12 @@ def key(sticky_key, action_key, modifiers=nil)
       'type' => 'basic',
       'from' => {
         'key_code' => sticky_key,
-        'modifiers' => Karabiner.from_modifiers(modifiers, ['any']),
+        'modifiers' => Karabiner.from_modifiers(nil, ['any']),
       },
       'to' => [
         {
           'key_code' => action_key,
+          'modifiers' => Karabiner.from_modifiers(modifiers, ['any']),
         },
       ],
       'conditions' => [
@@ -147,12 +148,13 @@ def key(sticky_key, action_key, modifiers=nil)
             Karabiner.set_variable('key_action_key', 0),
           ],
         },
-        'modifiers' => Karabiner.from_modifiers(modifiers, ['any']),
+        'modifiers' => Karabiner.from_modifiers(nil, ['any']),
       },
       'to' => [
         Karabiner.set_variable('key_action_key', 1),
         {
           'key_code' => action_key,
+          'modifiers' => Karabiner.from_modifiers(modifiers, ['any']),
         },
       ],
       'parameters' => {
