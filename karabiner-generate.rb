@@ -78,7 +78,7 @@ def sticky_q()
         'description' => 'gen: sticky q - cmd + shift',
         'manipulators' => [
           sticky("q", "w", "w", ["command", "shift"]),
-          sticky("q", "w", alfred("google", "net.deanishe.alfred-searchio.old")),
+          sticky("q", "w", alfred("google", "net.deanishe.alfred-searchio.old"), [], []),
         ].flatten,
   )
 end
