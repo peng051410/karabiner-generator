@@ -78,7 +78,8 @@ def sticky_q()
   puts JSON.pretty_generate(
         'description' => 'gen: shell q - cmd + shift',
         'manipulators' => [
-          key("q", "w", "w", [], ["command", "shift"]),
+          key("q", "w", "w", ["command", "shift"]),
+          key("q", "t", "t", ["command", "shift"]),
         ].flatten,
   )
 end
@@ -136,7 +137,7 @@ def shell(held_key, trigger_key, action)
   data
 end
 
-def key(held_key, trigger_key, key_code, mandotary_modifiers=[], to_modifiers=[])
+def key(held_key, trigger_key, key_code, to_modifiers=[])
   data = []
 
   ############################################################
@@ -145,7 +146,7 @@ def key(held_key, trigger_key, key_code, mandotary_modifiers=[], to_modifiers=[]
     'type' => 'basic',
     'from' => {
       'key_code' => trigger_key,
-      'modifiers' => Karabiner.from_modifiers(mandotary_modifiers, ['any']),
+      'modifiers' => Karabiner.from_modifiers([], ['any']),
     },
     'to' => [
      'key_code' => key_code,
