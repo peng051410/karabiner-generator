@@ -78,7 +78,6 @@ def sticky_q()
         'description' => 'gen: sticky q - cmd + shift',
         'manipulators' => [
           sticky("q", "w", "w", [], ["command", "shift"]),
-          sticky("q", "k", alfred("google", "net.deanishe.alfred-searchio.old")),
         ].flatten,
   )
 end
@@ -101,7 +100,7 @@ def sticky(held_key, trigger_key, action, mandotary_modifiers=[], to_modifiers=[
       'modifiers' => Karabiner.from_modifiers(mandotary_modifiers, ['any']),
     },
     'to' => action,
-    'modifiers' => {to_modifiers},
+    'modifiers' => to_modifiers,
     'conditions' => [Karabiner.variable_if(held_key, 1)],
   }
 
@@ -120,7 +119,7 @@ def sticky(held_key, trigger_key, action, mandotary_modifiers=[], to_modifiers=[
         'key_down_order' => 'strict',
         'key_up_order' => 'strict_inverse',
         'to_after_key_up' => [
-          Karabiner.set_variable('launcher', 0),
+          Karabiner.set_variable(held_key, 0),
         ],
       },
       'modifiers' => Karabiner.from_modifiers([], ['any']),
