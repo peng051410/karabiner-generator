@@ -41,6 +41,9 @@ Will make j + k pressed together trigger km_clone_github_repo variable.
 
 `j/k = km_clone_github_repo`
 
+## Related
+- [Karabiner JSON Spec](https://pqrs.org/osx/karabiner/json.html)
+
 ## Contributing
 [Suggestions](../../issues/) and pull requests are highly encouraged!
 
