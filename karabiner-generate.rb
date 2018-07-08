@@ -29,7 +29,15 @@ def sticky_w()
         'description' => 'gen: sticky w - apps',
         'manipulators' => [
             sticky('w','k',km("open: safari")),
-            sticky('w','j',alfred("google", "net.deanishe.alfred-searchio.old"))
+            sticky('w','i',km("open: chrome")),
+            sticky('w','n',km("open: bee")),
+            sticky('w','h',km("open: xcode")),
+            sticky('w','t',km("open: console")),
+            sticky('w','period',km("open: karabiner elements")),
+            sticky('w','comma',km("open: spotify")),
+            sticky('w','v',km("open: mindnode")),
+            sticky('w','b',km("open: bettertouchtool")),
+            sticky('w','caps_lock',km("open: finder")),
         ].flatten,
   )
 end
@@ -38,19 +46,20 @@ def sticky_s()
   puts JSON.pretty_generate(
         'description' => 'gen: sticky s - essential',
         'manipulators' => [
-          key_to_key('f', 'return_or_enter'),
-          key_to_key('j', 'down_arrow'),
-          key_to_key('k', 'up_arrow'),
-          key_to_key('h', 'left_arrow'),
-          key_to_key('l', 'right_arrow'),
+          key('f', 'return_or_enter'),
+          key('j', 'down_arrow'),
+          key('k', 'up_arrow'),
+          key('h', 'left_arrow'),
+          key('l', 'right_arrow'),
+          key('l', 'right_arrow'),
+          key('m', 'right_arrow', 'command'),
         ].flatten,
   )
 end
 
 def sticky(sticky_key, action_key, action)
-
   if action.start_with? 'osascript'
-    action = [{'shell_command' => action}])
+    action = [{'shell_command' => action}]
   end
 
   data = []
@@ -61,7 +70,7 @@ def sticky(sticky_key, action_key, action)
     'type' => 'basic',
     'from' => {
       'key_code' => action_key,
-      'modifiers' => Karabiner.from_modifiers(mandatory_modifiers, ['any']),
+      'modifiers' => Karabiner.from_modifiers([], ['any']),
     },
     'to' => action,
     'conditions' => [Karabiner.variable_if('launcher', 1)],
@@ -85,11 +94,11 @@ def sticky(sticky_key, action_key, action)
           Karabiner.set_variable('launcher', 0),
         ],
       },
-      'modifiers' => Karabiner.from_modifiers(mandatory_modifiers, ['any']),
+      'modifiers' => Karabiner.from_modifiers([], ['any']),
     },
     'to' => [
       Karabiner.set_variable('launcher', 1),
-    ].concat(to),
+    ].concat(action),
     'parameters' => {
       'basic.simultaneous_threshold_milliseconds' => PARAMETERS[:simultaneous_threshold_milliseconds],
     },
@@ -103,23 +112,23 @@ def sticky(sticky_key, action_key, action)
 end
 
 
-def key_to_key(from_key_code, to_key_code)
+def key(sticky_key, action_key, modifiers=nil)
   [
     {
       'type' => 'basic',
       'from' => {
-        'key_code' => from_key_code,
-        'modifiers' => Karabiner.from_modifiers(nil, ['any']),
+        'key_code' => sticky_key,
+        'modifiers' => Karabiner.from_modifiers(modifiers, ['any']),
       },
       'to' => [
         {
-          'key_code' => to_key_code,
+          'key_code' => action_key,
         },
       ],
       'conditions' => [
         {
           'type' => 'variable_if',
-          'name' => 'key_to_key',
+          'name' => 'key_action_key',
           'value' => 1,
         },
       ],
@@ -129,21 +138,21 @@ def key_to_key(from_key_code, to_key_code)
       'from' => {
         'simultaneous' => [
           { 'key_code' => 's' },
-          { 'key_code' => from_key_code },
+          { 'key_code' => sticky_key },
         ],
         'simultaneous_options' => {
           'key_down_order' => 'strict',
           'key_up_order' => 'strict_inverse',
           'to_after_key_up' => [
-            Karabiner.set_variable('key_to_key', 0),
+            Karabiner.set_variable('key_action_key', 0),
           ],
         },
-        'modifiers' => Karabiner.from_modifiers(nil, ['any']),
+        'modifiers' => Karabiner.from_modifiers(modifiers, ['any']),
       },
       'to' => [
-        Karabiner.set_variable('key_to_key', 1),
+        Karabiner.set_variable('key_action_key', 1),
         {
-          'key_code' => to_key_code,
+          'key_code' => action_key,
         },
       ],
       'parameters' => {
@@ -151,56 +160,6 @@ def key_to_key(from_key_code, to_key_code)
       },
     },
   ]
-end
-
-def launcher_with_modifs(from_key_code, mandatory_modifiers, to, trigger_key)
-  data = []
-
-  ############################################################
-
-  h = {
-    'type' => 'basic',
-    'from' => {
-      'key_code' => from_key_code,
-      'modifiers' => Karabiner.from_modifiers(mandatory_modifiers, ['any']),
-    },
-    'to' => to,
-    'conditions' => [Karabiner.variable_if('launcher', 1)],
-  }
-
-  data << h
-
-  ############################################################
-
-  h = {
-    'type' => 'basic',
-    'from' => {
-      'simultaneous' => [
-        { 'key_code' => trigger_key },
-        { 'key_code' => from_key_code },
-      ],
-      'simultaneous_options' => {
-        'key_down_order' => 'strict',
-        'key_up_order' => 'strict_inverse',
-        'to_after_key_up' => [
-          Karabiner.set_variable('launcher', 0),
-        ],
-      },
-      'modifiers' => Karabiner.from_modifiers(mandatory_modifiers, ['any']),
-    },
-    'to' => [
-      Karabiner.set_variable('launcher', 1),
-    ].concat(to),
-    'parameters' => {
-      'basic.simultaneous_threshold_milliseconds' => PARAMETERS[:simultaneous_threshold_milliseconds],
-    },
-  }
-
-  data << h
-
-  ############################################################
-
-  data
 end
 
 main
