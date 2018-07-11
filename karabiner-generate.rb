@@ -17,7 +17,9 @@ def alfred(trigger, workflow)
 end
 
 def main
-  sticky_i()
+  sticky_e()
+  print ','
+  sticky_q()
 end
 
 # TODO: alphabetize all manipulators based on trigger key. can use vim magic for it
@@ -467,6 +469,7 @@ def key(held_key, trigger_key, key_code, to_modifiers=[])
     'to' => [
       Karabiner.set_variable(held_key, 1),
       'key_code' => key_code,
+      'modifiers' => to_modifiers, 
     ],
     'parameters' => {
       'basic.simultaneous_threshold_milliseconds' => PARAMETERS[:simultaneous_threshold_milliseconds],
