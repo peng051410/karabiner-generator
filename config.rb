@@ -1,28 +1,7 @@
 #!/usr/bin/env ruby
-
-# Parameters
-PARAMETERS = {
-  :simultaneous_threshold_milliseconds => 500,
-}.freeze
-
-require 'json'
 require_relative 'karabiner.rb'
 
-def km(macro)
-    "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"" + macro + "\"'"
-end
-
-def alfred(trigger, workflow)
-    "osascript -e 'tell application \"Alfred 3\" to run trigger \"" + trigger + "\" in workflow \"" + workflow + "\" with argument \"\"'"
-end
-
-def main
-  sticky_e()
-  print ','
-  sticky_q()
-end
-
-# TODO: alphabetize all manipulators based on trigger key. can use vim magic for it
+# TODO: alphabetize all manipulators based on trigger key. use vim magic
 
 # TODO: add HS calls. do it in background
 # hammerspoon://openConsole -> opens console
@@ -30,7 +9,39 @@ end
 # hammerspoon://reloadConfig -> reloads HS
 # hammerspoon://test -> tests some HS func
 
-# SMALL BINDS
+# TODO: remove need for print() statements
+def main
+  simkeys()
+  print(',')
+  wkey()
+  print(',')
+  ekey()
+  print(',')
+  ikey()
+  print(',')
+  okey()
+  print(',')
+  akey()
+  print(',')
+  skey()
+  print(',')
+  fkey()
+  print(',')
+  zkey()
+  print(',')
+  nkey()
+end
+main
+
+def simkeys()
+    puts JSON.pretty_generate(
+        'description' => 'sim keys',
+        'manipulators' => [
+            simshell('j', 'k', alfred('google', 'net.deanishe.alfred-searchio')), 
+            simkey('j', 'l', 'spacebar', ['command']),
+        ].flatten,
+  )
+end
 
 def swapkeys()
     puts JSON.pretty_generate(
@@ -42,11 +53,9 @@ def swapkeys()
   )
 end
 
-# STICKY KEYS
-
-def sticky_q()
+def qkey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky q - cmd + shift',
+        'description' => 'q - cmd + shift',
         'manipulators' => [
           key("q", "return_or_enter", "return_or_enter", ["command", "shift"]),
           key("q", "escape", "escape", ["command", "shift"]),
@@ -111,9 +120,9 @@ def sticky_q()
   )
 end
 
-def sticky_w()
+def wkey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky w - apps',
+        'description' => 'w - apps',
         'manipulators' => [
             shell('w', 'k', km("open: safari")),
             shell('w', 'a', km("open: dash")),
@@ -138,9 +147,9 @@ def sticky_w()
   )
 end
 
-def sticky_e()
+def ekey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky e - cmd',
+        'description' => 'e - cmd',
         'manipulators' => [
           key("e", "return_or_enter", "return_or_enter", ["command"]),
           key("e", "escape", "escape", ["command"]),
@@ -204,11 +213,11 @@ def sticky_e()
   )
 end
 
-def sticky_r()
+def rkey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky r - apps',
+        'description' => 'r - apps',
         'manipulators' => [
-          key('r', 'space', 's', ["shift", "control"]), # web searches with selected text
+          #key('r', 'space', 's', ["shift", "control"]), # web searches with selected text
           shell('r', '1', km('open: hazel')),
           shell('r', 'u', km('open: actual')),
           shell('r', 'l', km('open: ulysses')),
@@ -231,14 +240,14 @@ def sticky_r()
           shell('r', 'w', km('open: 1password')),
           shell('r', 'v', km('open: keychain access')),
           shell('r', 'n', km('open: timing')),
-          key("r", "o", "f10", ["option"], ["control"]), # open typinator
+         # key("r", "o", "f10", ["option"], ["control"]), # open typinator
         ].flatten,
   )
 end
 
-def sticky_t()
+def tkey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky t - handy actions',
+        'description' => 't - handy actions',
         'manipulators' => [
           shell('t', 'i', km('g: new snippetslab snippet')),
           shell('t', 'o', km('g: new mindnode file')),
@@ -254,9 +263,9 @@ def sticky_t()
   )
 end
 
-def sticky_y()
+def ykey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky y - websites',
+        'description' => 'y - websites',
         'manipulators' => [
           shell('y', 'b', km('w: brilliant')),
           shell('y', 'd', km('w: pinboard')),
@@ -265,9 +274,9 @@ def sticky_y()
   )
 end
 
-def sticky_u()
+def ukey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky u - websites',
+        'description' => 'u - websites',
         'manipulators' => [
           shell('u', 'e', km('w: repl')),
           shell('u', 'd', km('w: codepen')),
@@ -291,20 +300,28 @@ def sticky_u()
 end
 
 # TODO: finish
-def sticky_i()
+def ikey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky ',
+        'description' => 'i - symbols',
         'manipulators' => [
-            shell("i", "b", km('i: TODO:'))
+          key("i", "a", "slash", []),
         ].flatten,
   )
 end
 
-def sticky_a()
+def okey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky a - ctrl',
+        'description' => 'o - alfred',
         'manipulators' => [
-          key("a", "return_or_enter", "return_or_enter", ["control"]), 
+        ].flatten,
+  )
+end
+
+def akey()
+  puts JSON.pretty_generate(
+        'description' => 'a - ctrl',
+        'manipulators' => [
+          key("a", "return_or_enter", "return_or_enter", ["control"]),
           key("a", "escape", "escape", ["control"]),
           key("a", "delete_or_backspace", "delete_or_backspace", ["control"]),
           key("a", "delete_forward", "delete_forward", ["control"]),
@@ -327,7 +344,7 @@ def sticky_a()
           key("a", "non_us_backslash", "non_us_backslash", ["control"]),
           key("a", "slash", "slash", ["control"]),
           key("a", "non_us_backslash", "non_us_backslash", ["control"]),
-          key("a", "b", "b", ["control"]), 
+          key("a", "b", "b", ["control"]),
           key("a", "c", "c", ["control"]),
           key("a", "d", "d", ["control"]),
           key("a", "e", "e", ["control"]),
@@ -366,140 +383,48 @@ def sticky_a()
   )
 end
 
-# TODO: finish 
-def sticky_s()
+def skey()
   puts JSON.pretty_generate(
-        'description' => 'gen: sticky s - essential',
+        'description' => 's - essential',
         'manipulators' => [
+          key("s", "i", "spacebar", ["control"]), # contexts window search
+          key("s", "o", "9", ["control", "command", "option"]), # contexts window search
+          key("s", "f", "return_or_enter", []),
+          key("s", "g", "tab", ["command"]),
+          key("s", "h", "left_arrow", []),
+          key("s", "j", "down_arrow", []),
+          key("s", "k", "up_arrow", []),
+          key("s", "l", "right_arrow", []),
         ].flatten,
   )
 end
 
-def shell(held_key, trigger_key, action)
-  data = []
-
-  ############################################################
-
-  h = {
-    'type' => 'basic',
-    'from' => {
-      'key_code' => trigger_key,
-      'modifiers' => Karabiner.from_modifiers([], ['any']),
-    },
-    'to' => [
-     'shell_command' => action,
-    ],
-    'conditions' => [Karabiner.variable_if(held_key, 1)],
-  }
-
-  data << h
-
-  ############################################################
-
-  h = {
-    'type' => 'basic',
-    'from' => {
-      'simultaneous' => [
-        { 'key_code' => held_key},
-        { 'key_code' => trigger_key},
-      ],
-      'simultaneous_options' => {
-        'key_down_order' => 'strict',
-        'key_up_order' => 'strict_inverse',
-        'to_after_key_up' => [
-          Karabiner.set_variable(held_key, 0),
-        ],
-      },
-      'modifiers' => Karabiner.from_modifiers([], ['any']),
-    },
-    'to' => [
-      Karabiner.set_variable(held_key, 1),
-      'shell_command' => action,
-    ],
-    'parameters' => {
-      'basic.simultaneous_threshold_milliseconds' => PARAMETERS[:simultaneous_threshold_milliseconds],
-    },
-  }
-
-  data << h
-
-  ############################################################
-
-  data
+def fkey()
+  puts JSON.pretty_generate(
+        'description' => 'f - essential',
+        'manipulators' => [
+          key("f", "e", "8", ["option", "command"]), # alfred clipboard history search 
+          key("f", "k", "return_or_enter", []), # alfred clipboard history search 
+        ].flatten,
+  )
 end
 
-def key(held_key, trigger_key, key_code, to_modifiers=[])
-  data = []
-
-  ############################################################
-
-  h = {
-    'type' => 'basic',
-    'from' => {
-      'key_code' => trigger_key,
-      'modifiers' => Karabiner.from_modifiers([], ['any']),
-    },
-    'to' => [
-     'key_code' => key_code,
-     'modifiers' => to_modifiers,
-    ],
-    'conditions' => [Karabiner.variable_if(held_key, 1)],
-  }
-
-  data << h
-
-  ############################################################
-
-  h = {
-    'type' => 'basic',
-    'from' => {
-      'simultaneous' => [
-        { 'key_code' => held_key},
-        { 'key_code' => trigger_key},
-      ],
-      'simultaneous_options' => {
-        'key_down_order' => 'strict',
-        'key_up_order' => 'strict_inverse',
-        'to_after_key_up' => [
-          Karabiner.set_variable(held_key, 0),
-        ],
-      },
-      'modifiers' => Karabiner.from_modifiers([], ['any']),
-    },
-    'to' => [
-      Karabiner.set_variable(held_key, 1),
-      'key_code' => key_code,
-      'modifiers' => to_modifiers, 
-    ],
-    'parameters' => {
-      'basic.simultaneous_threshold_milliseconds' => PARAMETERS[:simultaneous_threshold_milliseconds],
-    },
-  }
-
-  data << h
-
-  ############################################################
-
-  data
+def zkey()
+  puts JSON.pretty_generate(
+        'description' => 'z - chat',
+        'manipulators' => [
+            shell("z", "k", km('open: Telegram')),
+            shell("z", "j", km('open: Textual')),
+        ].flatten,
+  )
 end
 
-def swapkey(from_key, to_key, mandotary_modifiers=nil, optional_modifiers=['any'], to_modifiers=nil)
-  data = []
-
-  h = {
-    'type' => 'basic',
-    'from' => {
-      'key_code' => from_key,
-      'modifiers' => Karabiner.from_modifiers(mandotary_modifiers, optional_modifiers),
-    },
-    'to' => [
-     'key_code' => to_key,
-     'modifiers' => to_modifiers,
-    ]
-  }
-
-  data << h
-
+def nkey()
+  puts JSON.pretty_generate(
+        'description' => 'n - alfred',
+        'manipulators' => [
+            shell("n", "s", alfred('search', 'nikivi.web.searches')),
+            shell("n", "f", alfred('github', 'me.lachlan.githubjump')),
+        ].flatten,
+  )
 end
-
-main
