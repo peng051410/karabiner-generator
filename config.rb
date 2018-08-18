@@ -37,8 +37,6 @@ def main
   print(',')
   zkey()
   print(',')
-  vkey()
-  print(',')
   nkey()
 end
 
@@ -58,10 +56,9 @@ def simkeys()
         'manipulators' => [
             simshell('j', 'k', alfred('google', 'net.deanishe.alfred-searchio')), 
             simshell('j', 'semicolon', alfred('tabs', 'net.deanishe.alfred.safari')), 
+            simshell('o', 'i', alfred('tty', 'net.isometry.alfred.tty')), 
             simkey('j', 'l', 'spacebar', ['command']),
-            simshell('spacebar', 'k', alfred('', 'net.deanishe.alfred.safari')), 
-            simshell('j', 'semicolon', alfred('tabs', 'net.deanishe.alfred.safari')), 
-            simshell('j', 'semicolon', alfred('tabs', 'net.deanishe.alfred.safari')), 
+            simshell('spacebar', 'k', alfred('youtube', 'net.deanishe.alfred-searchio')), 
         ].flatten,
   )
 end
@@ -507,7 +504,7 @@ def vkey()
         'description' => 'v - media',
         'manipulators' => [
           key("v", "m", "volume_increment", []), 
-          key("v", "n", "volume_decrement", []), 
+          key("v", "n", "volume_increment", []), 
         ].flatten,
   )
 end
