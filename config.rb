@@ -21,6 +21,8 @@ def main
   print(',')
   ekey()
   print(',')
+  rkey()
+  print(',')
   ikey()
   print(',')
   okey()
@@ -29,9 +31,13 @@ def main
   print(',')
   skey()
   print(',')
+  dkey()
+  print(',')
   fkey()
   print(',')
   zkey()
+  print(',')
+  vkey()
   print(',')
   nkey()
 end
@@ -281,7 +287,7 @@ def rkey()
           shell('r', 'k', km('open: pdf expert')),
           shell('r', 'w', km('open: 1password')),
           shell('r', 'v', km('open: keychain access')),
-          shell('r', 'n', km('open: timing')),
+          shell('r', 'n', km('open: Timing')),
          # key("r", "o", "f10", ["option"], ["control"]), # open typinator
         ].flatten,
   )
@@ -355,6 +361,16 @@ def okey()
   puts JSON.pretty_generate(
         'description' => 'o - alfred',
         'manipulators' => [
+          shell('o', 'a', alfred('search files', 'nikivi.manage.wiki')),
+          shell('o', 's', alfred('search clones', 'com.vitorgalvao.alfred.directories')),
+          shell('o', 'd', alfred('search desktop', 'com.vitorgalvao.alfred.directories')),
+          shell('o', 'f', alfred('search repos', 'net.deanishe.alfred-git-repos')),
+          key("o", "1", "1", ["command"]),
+          key("o", "2", "2", ["command"]),
+          key("o", "3", "3", ["command"]),
+          key("o", "4", "4", ["command"]),
+          key("o", "5", "5", ["command"]),
+          key("o", "6", "6", ["command"]),
         ].flatten,
   )
 end
@@ -363,12 +379,12 @@ def akey()
   puts JSON.pretty_generate(
         'description' => 'a - ctrl',
         'manipulators' => [
+          key("a", "spacebar", "0", ["control", "option", "command"]),
           key("a", "return_or_enter", "return_or_enter", ["control"]),
           key("a", "escape", "escape", ["control"]),
           key("a", "delete_or_backspace", "delete_or_backspace", ["control"]),
           key("a", "delete_forward", "delete_forward", ["control"]),
           key("a", "tab", "tab", ["control"]),
-          key("a", "spacebar", "spacebar", ["control"]),
           key("a", "hyphen", "hyphen", ["control"]),
           key("a", "equal_sign", "equal_sign", ["control"]),
           key("a", "open_bracket", "open_bracket", ["control"]),
@@ -431,14 +447,25 @@ def skey()
         'manipulators' => [
           key("s", "i", "spacebar", ["control"]), # contexts window search
           key("s", "o", "9", ["control", "command", "option"]), # contexts window search
+          key("s", "a", "c", ["command"]),
           key("s", "d", "delete_or_backspace", []),
           key("s", "f", "return_or_enter", []),
-          key("s", "v", "", ["shift"]),
+          key("s", "c", "delete_or_backspace", ["command"]),
           key("s", "g", "tab", ["command"]),
           key("s", "h", "left_arrow", []),
           key("s", "j", "down_arrow", []),
           key("s", "k", "up_arrow", []),
           key("s", "l", "right_arrow", []),
+          key("s", "n", "v", ["command"]),
+        ].flatten,
+  )
+end
+
+def dkey()
+  puts JSON.pretty_generate(
+        'description' => 'd - mouse',
+        'manipulators' => [
+          key("d", "a", "8", ["command", "option", "control"]),
         ].flatten,
   )
 end
@@ -453,12 +480,34 @@ def fkey()
   )
 end
 
+def gkey()
+  puts JSON.pretty_generate(
+        'description' => 'g - things',
+        'manipulators' => [
+          key("f", "e", "8", ["option", "command"]), 
+        ].flatten,
+  )
+end
+
 def zkey()
   puts JSON.pretty_generate(
         'description' => 'z - chat',
         'manipulators' => [
+            shell("z", "i", km('open: Tweetbot')),
+            shell("z", "f", km('open: Spark')),
+            shell("z", "g", alfred('contacts', 'nikivi.search-for-content')),
             shell("z", "k", km('open: Telegram')),
             shell("z", "j", km('open: Textual')),
+        ].flatten,
+  )
+end
+
+def vkey()
+  puts JSON.pretty_generate(
+        'description' => 'v - media',
+        'manipulators' => [
+          key("v", "m", "volume_increment", []), 
+          key("v", "n", "volume_decrement", []), 
         ].flatten,
   )
 end
