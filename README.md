@@ -10,7 +10,7 @@ The [included config](config.rb) contains my own private keyboard configuration.
 
 This will put Karabiner JSON of all the rules in your clipboard. You can then paste it inside Karabiner in-between `rules []` block.
 
-In future this will be automated even further so all will never have to be dealing with raw JSON of `karabiner.json` and can effortlessly change your keyboard config on the fly with a nice DSL.
+In future this will be automated even further so you will never have to be dealing with raw JSON of `karabiner.json` and can effortlessly change your keyboard config on the fly with a nice DSL.
 
 ## Related
 - [Karabiner JSON Spec](https://pqrs.org/osx/karabiner/json.html)
