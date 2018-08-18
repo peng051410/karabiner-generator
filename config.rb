@@ -11,6 +11,8 @@ require_relative 'karabiner.rb'
 
 # TODO: remove need for print() statements
 def main
+  colonkey()
+  print(',')
   swapkeys()
   print(',')
   simkeys()
@@ -51,6 +53,44 @@ def simkeys()
             simshell('j', 'k', alfred('google', 'net.deanishe.alfred-searchio')), 
             simshell('j', 'semicolon', alfred('tabs', 'net.deanishe.alfred.safari')), 
             simkey('j', 'l', 'spacebar', ['command']),
+            simshell('spacebar', 'k', alfred('', 'net.deanishe.alfred.safari')), 
+            simshell('j', 'semicolon', alfred('tabs', 'net.deanishe.alfred.safari')), 
+            simshell('j', 'semicolon', alfred('tabs', 'net.deanishe.alfred.safari')), 
+        ].flatten,
+  )
+end
+
+def colonkey()
+  puts JSON.pretty_generate(
+        'description' => 'colon - shift',
+        'manipulators' => [
+          key("semicolon", "q", "q", ["shift"]),
+          key("semicolon", "w", "w", ["shift"]),
+          key("semicolon", "e", "e", ["shift"]),
+          key("semicolon", "r", "r", ["shift"]),
+          key("semicolon", "t", "t", ["shift"]),
+          key("semicolon", "y", "y", ["shift"]),
+          key("semicolon", "u", "u", ["shift"]),
+          key("semicolon", "u", "u", ["shift"]),
+          key("semicolon", "i", "i", ["shift"]),
+          key("semicolon", "o", "o", ["shift"]),
+          key("semicolon", "p", "p", ["shift"]),
+          key("semicolon", "a", "a", ["shift"]),
+          key("semicolon", "s", "s", ["shift"]),
+          key("semicolon", "d", "d", ["shift"]),
+          key("semicolon", "f", "f", ["shift"]),
+          key("semicolon", "g", "g", ["shift"]),
+          key("semicolon", "h", "h", ["shift"]),
+          key("semicolon", "j", "j", ["shift"]),
+          key("semicolon", "k", "k", ["shift"]),
+          key("semicolon", "l", "l", ["shift"]),
+          key("semicolon", "z", "z", ["shift"]),
+          key("semicolon", "x", "x", ["shift"]),
+          key("semicolon", "c", "c", ["shift"]),
+          key("semicolon", "v", "v", ["shift"]),
+          key("semicolon", "b", "b", ["shift"]),
+          key("semicolon", "n", "n", ["shift"]),
+          key("semicolon", "m", "m", ["shift"]),
         ].flatten,
   )
 end
@@ -391,7 +431,9 @@ def skey()
         'manipulators' => [
           key("s", "i", "spacebar", ["control"]), # contexts window search
           key("s", "o", "9", ["control", "command", "option"]), # contexts window search
+          key("s", "d", "delete_or_backspace", []),
           key("s", "f", "return_or_enter", []),
+          key("s", "v", "", ["shift"]),
           key("s", "g", "tab", ["command"]),
           key("s", "h", "left_arrow", []),
           key("s", "j", "down_arrow", []),

@@ -8,7 +8,7 @@ The script is a modified version of a [ruby script](https://github.com/pqrs-org/
 The [included config](config.rb) contains my own private keyboard configuration. To generate it and add it to Karabiner Elements, run this command:
 `ruby config.rb | pbcopy` Or you can download [modd](https://github.com/cortesi/modd) and run `modd` to automatically generate the rules on each file save of `config.rb`.
 
-This will put Karabiner JSON of all the rules in your clipboard. You can then paste it inside Karabiner in-between `rules []` block.
+This will put Karabiner JSON of all the rules in your clipboard. You can then paste it inside Karabiner config file found in `~/.config/karabiner/karabiner.json` in-between `rules []` block.
 
 In future this will be automated even further so you will never have to be dealing with raw JSON of `karabiner.json` and can effortlessly change your keyboard config on the fly with a nice DSL.
 
