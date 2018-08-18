@@ -11,6 +11,8 @@ require_relative 'karabiner.rb'
 
 # TODO: remove need for print() statements
 def main
+  swapkeys()
+  print(',')
   simkeys()
   print(',')
   wkey()
@@ -31,17 +33,6 @@ def main
   print(',')
   nkey()
 end
-main
-
-def simkeys()
-    puts JSON.pretty_generate(
-        'description' => 'sim keys',
-        'manipulators' => [
-            simshell('j', 'k', alfred('google', 'net.deanishe.alfred-searchio')), 
-            simkey('j', 'l', 'spacebar', ['command']),
-        ].flatten,
-  )
-end
 
 def swapkeys()
     puts JSON.pretty_generate(
@@ -49,6 +40,17 @@ def swapkeys()
         'manipulators' => [
             swapkey("semicolon", "semicolon", nil, ["caps_lock"], ["left_shift"]), # ; -> :
             swapkey("semicolon", "semicolon", ["shift"], ['any'], nil), # shift + : -> ;
+        ].flatten,
+  )
+end
+
+def simkeys()
+    puts JSON.pretty_generate(
+        'description' => 'sim keys',
+        'manipulators' => [
+            simshell('j', 'k', alfred('google', 'net.deanishe.alfred-searchio')), 
+            simshell('j', 'semicolon', alfred('tabs', 'net.deanishe.alfred.safari')), 
+            simkey('j', 'l', 'spacebar', ['command']),
         ].flatten,
   )
 end
@@ -428,3 +430,5 @@ def nkey()
         ].flatten,
   )
 end
+
+main
