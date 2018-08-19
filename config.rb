@@ -15,7 +15,11 @@ def main
   print(',')
   swapkeys()
   print(',')
-  simkeys()
+  simj()
+  print(',')
+  simk()
+  print(',')
+  simspacebar()
   print(',')
   wkey()
   print(',')
@@ -60,15 +64,33 @@ def swapkeys()
   )
 end
 
-def simkeys()
+def simj()
     puts JSON.pretty_generate(
-        'description' => 'sim keys',
+        'description' => 'j',
         'manipulators' => [
             simshell('j', 'k', alfred('search google', 'net.deanishe.alfred-searchio')), 
             simshell('j', 'semicolon', alfred('search tabs', 'net.deanishe.alfred.safari')), 
-            simshell('k', 'spacebar', alfred('search youtube', 'net.deanishe.alfred-searchio')), 
             simshell('j', 'spacebar',km('g: Get current URL from Safari')), 
             simkey('j', 'l', 'spacebar', ['command']),
+            simshell('k', 'l', alfred('search dash', 'com.nikivi.own.dash')), 
+        ].flatten,
+  )
+end
+
+def simk()
+    puts JSON.pretty_generate(
+        'description' => 'k',
+        'manipulators' => [
+            simshell('k', 'l', alfred('search dash', 'com.nikivi.own.dash')), 
+        ].flatten,
+  )
+end
+
+def simspacebar()
+    puts JSON.pretty_generate(
+        'description' => 'spacebar',
+        'manipulators' => [
+            simshell('spacebar', 'i', alfred('search google images', 'net.deanishe.alfred-searchio')), 
         ].flatten,
   )
 end
@@ -283,7 +305,6 @@ def rkey()
           shell('r', 'b', km('edit: edit keyboard shortcuts')),
           shell('r', 'comma', km('open: day one')),
           shell('r', 'm', km('open: marked')),
-          shell('r', 'caps_lock', km('open: magic number')),
           shell('r', 's', km('open: itunes')),
           shell('r', 'a', km('open: alfred preferences')),
           shell('r', 'i', km('open: pixave')),
@@ -358,6 +379,7 @@ def ikey()
   puts JSON.pretty_generate(
         'description' => 'i - symbols',
         'manipulators' => [
+          key("i", "q", "slash", []),
           key("i", "a", "slash", []),
         ].flatten,
   )
@@ -374,9 +396,14 @@ def okey()
          key('o', '5','5',['command']), 
          key('o', '6','6',['command']), 
          key('o', 'w','backslash',['option','command']), 
+         shell('o', 'q',alfred('search downloads','recentdownloads.ddjfreedom')), 
          shell('o', 'a',alfred('search files','nikivi.manage.wiki')), 
+         shell('o', 'i',alfred('search tty sessions','net.isometry.alfred.tty')), 
          shell('o', 'f',alfred('search repos','net.deanishe.alfred-git-repos')), 
          shell('o', 'j',alfred('search lists','nikivi.learn.anything')), 
+         shell('o', 's',alfred('search clones','com.vitorgalvao.alfred.directories')), 
+         shell('o', 'd',alfred('search desktop','com.vitorgalvao.alfred.directories')), 
+         shell('o', 'caps_lock',alfred('search folders','nikivi.search.folders')), 
          shell('o', 'z',alfred('search workflows','org.jeef.workflowdirectory')), 
         ].flatten,
   )
@@ -488,7 +515,12 @@ def fkey()
           key("f", "e", "8", ["option", "command"]), # alfred clipboard history search 
           key("f", "a", "4", ["option", "control", "command"]), 
           shell("f", "j", km('g: Open 1st iTerm tab')), 
-          key("f", "k", "return_or_enter", []), # alfred clipboard history search 
+          key("f", "k", "return_or_enter", []), 
+          key("f", "l", "return_or_enter", ['command']),
+          key("f", "o", "return_or_enter", ['fn']),
+          key("f", "i", "return_or_enter", ['shift']),
+          key("f", "n", "return_or_enter", ['control']),
+          key("f", "m", "return_or_enter", ['option']),
         ].flatten,
   )
 end
@@ -551,10 +583,18 @@ def nkey()
   puts JSON.pretty_generate(
         'description' => 'n - alfred',
         'manipulators' => [
+            key("n", "1", "1", ['option']), 
+            key("n", "2", "2", ['option']), 
+            key("n", "3", "3", ['option']), 
+            key("n", "4", "4", ['option']), 
+            key("n", "5", "5", ['option']), 
+            key("n", "6", "6", ['option']), 
             shell("n", "e", alfred('search subs', 'net.deanishe.alfred-reddit')),
+            shell("n", "x", alfred('search lobsters', 'nikivi.search.the.web')),
             shell("n", "a", alfred('search shares', 'nikivi.ask.create.share')),
             shell("n", "s", alfred('search websites', 'nikivi.web.searches')),
             shell("n", "f", alfred('search repos', 'me.lachlan.githubjump')),
+            shell("n", "g", alfred('search godoc', 'nikivi.search.the.web')),
         ].flatten,
   )
 end
@@ -565,6 +605,7 @@ def mkey()
         'manipulators' => [
             key("m", "a", '1', ['command', 'option', 'control']),
             shell("m", "z", alfred('song_radio', 'com.vdesabou.spotify.mini.player')),
+            shell("m", "x", alfred('web_search_current_track', 'com.vdesabou.spotify.mini.player')),
         ].flatten,
   )
 end
