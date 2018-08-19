@@ -1,58 +1,11 @@
 #!/usr/bin/env ruby
 require_relative 'karabiner.rb'
 
-# TODO: alphabetize all manipulators based on trigger key. use vim magic
-
 # TODO: add HS calls. do it in background
 # hammerspoon://openConsole -> opens console
 # hammerspoon://showTime -> shows time
 # hammerspoon://reloadConfig -> reloads HS
 # hammerspoon://test -> tests some HS func
-
-# TODO: remove need for print() statements
-def main
-  colonkey()
-  print(',')
-  swapkeys()
-  print(',')
-  simj()
-  print(',')
-  simk()
-  print(',')
-  simspacebar()
-  print(',')
-  wkey()
-  print(',')
-  ekey()
-  print(',')
-  rkey()
-  print(',')
-  ikey()
-  print(',')
-  okey()
-  print(',')
-  akey()
-  print(',')
-  skey()
-  print(',')
-  dkey()
-  print(',')
-  fkey()
-  print(',')
-  gkey()
-  print(',')
-  zkey()
-  print(',')
-  xkey()
-  print(',')
-  vkey()
-  print(',')
-  bkey()
-  print(',')
-  nkey()
-  print(',')
-  mkey()
-end
 
 def swapkeys()
     puts JSON.pretty_generate(
@@ -82,6 +35,16 @@ def simk()
         'description' => 'k',
         'manipulators' => [
             simshell('k', 'l', alfred('search dash', 'com.nikivi.own.dash')), 
+        ].flatten,
+  )
+end
+
+# TODO: sim keys don't work properly. Like l + m together. Commented out means not working but I want it to work.
+def siml()
+    puts JSON.pretty_generate(
+        'description' => 'l',
+        'manipulators' => [
+            #simshell('l', 'm', alfred('search bookmarks', 'net.deanishe.alfred.safari')), 
         ].flatten,
   )
 end
@@ -201,11 +164,10 @@ def wkey()
   puts JSON.pretty_generate(
         'description' => 'w - apps',
         'manipulators' => [
-            shell('w', 'k', km("open: safari")),
+            shell('w', 'k', km("open: Safari")),
             shell('w', 'a', km("open: Dash")),
-            shell('w', 'i', km("open: firefox dev")),
+            shell('w', 'i', km("open: xcode")),
             shell('w', 'n', km("open: bee")),
-            shell('w', 'h', km("open: xcode")),
             shell('w', 't', km("open: console")),
             shell('w', 'period', km("open: karabiner elements")),
             shell('w', 'comma', km("open: spotify")),
@@ -400,7 +362,8 @@ def okey()
          shell('o', 'a',alfred('search files','nikivi.manage.wiki')), 
          shell('o', 'i',alfred('search tty sessions','net.isometry.alfred.tty')), 
          shell('o', 'f',alfred('search repos','net.deanishe.alfred-git-repos')), 
-         shell('o', 'j',alfred('search lists','nikivi.learn.anything')), 
+         shell('o', 'k',alfred('search lists','nikivi.learn.anything')), 
+         shell('o', 'j',alfred('search lists','nikivi.awesome.lists')), 
          shell('o', 's',alfred('search clones','com.vitorgalvao.alfred.directories')), 
          shell('o', 'd',alfred('search desktop','com.vitorgalvao.alfred.directories')), 
          shell('o', 'caps_lock',alfred('search folders','nikivi.search.folders')), 
@@ -481,7 +444,7 @@ def skey()
         'manipulators' => [
           key("s", "e", "tab", []), 
           key("s", "i", "spacebar", ["control"]), # contexts window search
-          key("s", "o", "9", ["control", "command", "option"]), # contexts window search
+          key("s", "o", "9", ["control", "command", "option"]), # typinator quick search
           key("s", "a", "c", ["command"]),
           key("s", "d", "delete_or_backspace", []),
           key("s", "f", "return_or_enter", []),
@@ -502,6 +465,8 @@ def dkey()
   puts JSON.pretty_generate(
         'description' => 'd - mouse',
         'manipulators' => [
+          key("d", "i", "keypad_hyphen", ["command"]),
+          key("d", "o", "keypad_plus", ["command"]),
           key("d", "a", "8", ["command", "option", "control"]),
           key("d", "period", "3", ["command", "option", "control"]),
         ].flatten,
@@ -531,6 +496,7 @@ def gkey()
         'manipulators' => [
           key("g", "k", "f", ["option", "command", "shift"]), 
           key("g", "m", "2", ["option", "command", "control"]), 
+          shell("g", "s", km('Test')), 
         ].flatten,
   )
 end
@@ -606,8 +572,51 @@ def mkey()
             key("m", "a", '1', ['command', 'option', 'control']),
             shell("m", "z", alfred('song_radio', 'com.vdesabou.spotify.mini.player')),
             shell("m", "x", alfred('web_search_current_track', 'com.vdesabou.spotify.mini.player')),
+            shell("m", "caps_lock",km('g: Send tweet with current URL')),
         ].flatten,
   )
 end
 
-main
+# TODO: doesn't work
+def tildakey()
+  puts JSON.pretty_generate(
+        'description' => 'tilda',
+        'manipulators' => [
+            shell("grave_accent_and_tilde", "k", km('proj: Knowledge')),
+            shell("grave_accent_and_tilde", "h", km('proj: Hammerspoon')),
+            key("grave_accent_and_tilde", "spacebar", 's', ['shift', 'option', 'control']), # search selection on DuckDuckGo
+        ].flatten,
+  )
+end
+
+# TODO: doesn't work
+def spacebarkey()
+  puts JSON.pretty_generate(
+        'description' => 'spacebar',
+        'manipulators' => [
+            #simshell("spacebar", "i", alfred('search google images', 'net.deanishe.alfred-searchio')),
+            simshell("spacebar", "n",alfred('search km macros','iansinnott.keyboardmaestro')),
+        ].flatten,
+  )
+end
+
+# TODO: doesn't work
+def rightoptkey()
+  puts JSON.pretty_generate(
+        'description' => 'right option',
+        'manipulators' => [
+            shell("right_option", "return", km('open: Safari')),
+        ].flatten,
+  )
+end
+
+# TODO: Old sim keys I used. Must move either to sim or other place.
+# k m -> alfred: snippetslab search
+# l m -> alfred: safari bookmark search
+# : k -> alfred: ssh search
+# : m -> alfred: keywords search
+# k n -> alfred: google lucky search. Ideally this goes inside Google searchio search under cmd modifier press
+# space semicolon ->  alfred: dash profile switch
+# space j -> km: get current safari url
+# space l -> alfred: safari history search
+# space k -> alfred: youtube search
