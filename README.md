@@ -12,6 +12,9 @@ This will put Karabiner JSON of all the rules in your clipboard. You can then pa
 
 In future this will be automated even further so you will never have to be dealing with raw JSON of `karabiner.json` and can effortlessly change your keyboard config on the fly with a nice DSL.
 
+## Support
+There is a [Telegram group](https://t.me/karabinermac) you can join to ask questions and build the most awesome DSL for describing keyboard configuration.
+
 ## Related
 - [Karabiner JSON Spec](https://pqrs.org/osx/karabiner/json.html)
 

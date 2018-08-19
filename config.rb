@@ -35,9 +35,19 @@ def main
   print(',')
   fkey()
   print(',')
+  gkey()
+  print(',')
   zkey()
   print(',')
+  xkey()
+  print(',')
+  vkey()
+  print(',')
+  bkey()
+  print(',')
   nkey()
+  print(',')
+  mkey()
 end
 
 def swapkeys()
@@ -54,11 +64,11 @@ def simkeys()
     puts JSON.pretty_generate(
         'description' => 'sim keys',
         'manipulators' => [
-            simshell('j', 'k', alfred('google', 'net.deanishe.alfred-searchio')), 
-            simshell('j', 'semicolon', alfred('tabs', 'net.deanishe.alfred.safari')), 
-            simshell('o', 'i', alfred('tty', 'net.isometry.alfred.tty')), 
+            simshell('j', 'k', alfred('search google', 'net.deanishe.alfred-searchio')), 
+            simshell('j', 'semicolon', alfred('search tabs', 'net.deanishe.alfred.safari')), 
+            simshell('k', 'spacebar', alfred('search youtube', 'net.deanishe.alfred-searchio')), 
+            simshell('j', 'spacebar',km('g: Get current URL from Safari')), 
             simkey('j', 'l', 'spacebar', ['command']),
-            simshell('spacebar', 'k', alfred('youtube', 'net.deanishe.alfred-searchio')), 
         ].flatten,
   )
 end
@@ -170,7 +180,7 @@ def wkey()
         'description' => 'w - apps',
         'manipulators' => [
             shell('w', 'k', km("open: safari")),
-            shell('w', 'a', km("open: dash")),
+            shell('w', 'a', km("open: Dash")),
             shell('w', 'i', km("open: firefox dev")),
             shell('w', 'n', km("open: bee")),
             shell('w', 'h', km("open: xcode")),
@@ -266,7 +276,6 @@ def rkey()
           shell('r', '1', km('open: hazel')),
           shell('r', 'u', km('open: actual')),
           shell('r', 'l', km('open: ulysses')),
-          shell('semicolon', 'semicolon', km('open: paw')),
           shell('r', 'slash', km('open: little snitch configuration')),
           shell('r', 'tab', km('open: flume')),
           shell('r', 't', km('open: transmission')),
@@ -358,16 +367,17 @@ def okey()
   puts JSON.pretty_generate(
         'description' => 'o - alfred',
         'manipulators' => [
-          shell('o', 'a', alfred('search files', 'nikivi.manage.wiki')),
-          shell('o', 's', alfred('search clones', 'com.vitorgalvao.alfred.directories')),
-          shell('o', 'd', alfred('search desktop', 'com.vitorgalvao.alfred.directories')),
-          shell('o', 'f', alfred('search repos', 'net.deanishe.alfred-git-repos')),
-          key("o", "1", "1", ["command"]),
-          key("o", "2", "2", ["command"]),
-          key("o", "3", "3", ["command"]),
-          key("o", "4", "4", ["command"]),
-          key("o", "5", "5", ["command"]),
-          key("o", "6", "6", ["command"]),
+         key('o', '1','1',['command']), 
+         key('o', '2','2',['command']), 
+         key('o', '3','3',['command']), 
+         key('o', '4','4',['command']), 
+         key('o', '5','5',['command']), 
+         key('o', '6','6',['command']), 
+         key('o', 'w','backslash',['option','command']), 
+         shell('o', 'a',alfred('search files','nikivi.manage.wiki')), 
+         shell('o', 'f',alfred('search repos','net.deanishe.alfred-git-repos')), 
+         shell('o', 'j',alfred('search lists','nikivi.learn.anything')), 
+         shell('o', 'z',alfred('search workflows','org.jeef.workflowdirectory')), 
         ].flatten,
   )
 end
@@ -442,6 +452,7 @@ def skey()
   puts JSON.pretty_generate(
         'description' => 's - essential',
         'manipulators' => [
+          key("s", "e", "tab", []), 
           key("s", "i", "spacebar", ["control"]), # contexts window search
           key("s", "o", "9", ["control", "command", "option"]), # contexts window search
           key("s", "a", "c", ["command"]),
@@ -453,7 +464,9 @@ def skey()
           key("s", "j", "down_arrow", []),
           key("s", "k", "up_arrow", []),
           key("s", "l", "right_arrow", []),
+          key("s", "b", "left_arrow", ["command"]),
           key("s", "n", "v", ["command"]),
+          key("s", "m", "right_arrow", ["command"]),
         ].flatten,
   )
 end
@@ -463,6 +476,7 @@ def dkey()
         'description' => 'd - mouse',
         'manipulators' => [
           key("d", "a", "8", ["command", "option", "control"]),
+          key("d", "period", "3", ["command", "option", "control"]),
         ].flatten,
   )
 end
@@ -472,6 +486,8 @@ def fkey()
         'description' => 'f - essential',
         'manipulators' => [
           key("f", "e", "8", ["option", "command"]), # alfred clipboard history search 
+          key("f", "a", "4", ["option", "control", "command"]), 
+          shell("f", "j", km('g: Open 1st iTerm tab')), 
           key("f", "k", "return_or_enter", []), # alfred clipboard history search 
         ].flatten,
   )
@@ -481,7 +497,8 @@ def gkey()
   puts JSON.pretty_generate(
         'description' => 'g - things',
         'manipulators' => [
-          key("f", "e", "8", ["option", "command"]), 
+          key("g", "k", "f", ["option", "command", "shift"]), 
+          key("g", "m", "2", ["option", "command", "control"]), 
         ].flatten,
   )
 end
@@ -499,12 +516,33 @@ def zkey()
   )
 end
 
+def xkey()
+  puts JSON.pretty_generate(
+        'description' => 'x - alfred',
+        'manipulators' => [
+            shell("x", "l", alfred('search wiki', 'nikivi.mind')),
+        ].flatten,
+  )
+end
+
 def vkey()
   puts JSON.pretty_generate(
         'description' => 'v - media',
         'manipulators' => [
+          shell("v", "semicolon", km('edit: Karabiner')), 
+          shell("v", "a", km('edit: vimrc')), 
+          key("v", "l", "vk_consumer_next", []), 
+          key("v", "n", "volume_decrement", []), 
           key("v", "m", "volume_increment", []), 
-          key("v", "n", "volume_increment", []), 
+        ].flatten,
+  )
+end
+
+def bkey()
+  puts JSON.pretty_generate(
+        'description' => 'b - alfred',
+        'manipulators' => [
+            shell("b", "j", km('g: clone repo to ~/src/clones')),
         ].flatten,
   )
 end
@@ -513,8 +551,20 @@ def nkey()
   puts JSON.pretty_generate(
         'description' => 'n - alfred',
         'manipulators' => [
-            shell("n", "s", alfred('search', 'nikivi.web.searches')),
-            shell("n", "f", alfred('github', 'me.lachlan.githubjump')),
+            shell("n", "e", alfred('search subs', 'net.deanishe.alfred-reddit')),
+            shell("n", "a", alfred('search shares', 'nikivi.ask.create.share')),
+            shell("n", "s", alfred('search websites', 'nikivi.web.searches')),
+            shell("n", "f", alfred('search repos', 'me.lachlan.githubjump')),
+        ].flatten,
+  )
+end
+
+def mkey()
+  puts JSON.pretty_generate(
+        'description' => 'm - spotify',
+        'manipulators' => [
+            key("m", "a", '1', ['command', 'option', 'control']),
+            shell("m", "z", alfred('song_radio', 'com.vdesabou.spotify.mini.player')),
         ].flatten,
   )
 end
