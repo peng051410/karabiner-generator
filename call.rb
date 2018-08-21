@@ -11,6 +11,8 @@ def main
   print(',')
   simk()
   print(',')
+  qkey()
+  print(',')
   wkey()
   print(',')
   ekey()
@@ -42,6 +44,10 @@ def main
   nkey()
   print(',')
   mkey()
+  print(',')
+  ckey()
+  print(',')
+  commakey()
 end
 
 main

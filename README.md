@@ -1,5 +1,5 @@
 # Karabiner config generator
-> Small DSL to easily modify [Karabiner](https://github.com/tekezo/Karabiner-Elements) configuration
+> DSL to easily modify [Karabiner](https://github.com/tekezo/Karabiner-Elements) configuration
 
 The idea is to make a small language with first class support for variables, sticky key and simultaneous key definitions that generates [Karabiner JSON](https://pqrs.org/osx/karabiner/json.html).
 
