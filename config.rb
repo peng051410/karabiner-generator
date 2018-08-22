@@ -435,7 +435,7 @@ def dkey()
           key('d', 'o', 'keypad_plus', ['command']), # Zoom out
           key('d', 'a', '8', ['command', 'option', 'control']),
           key('d', 'period', '3', ['command', 'option', 'control']),
-          scroll('d', 'j', 'vertical_wheel', '32')
+          scroll('d', 'j', 'vertical_wheel', '-64')
         ].flatten,
   )
 end
