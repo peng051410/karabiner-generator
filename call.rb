@@ -47,6 +47,8 @@ def main
   print(',')
   ckey()
   print(',')
+  tkey()
+  print(',')
   commakey()
 end
 

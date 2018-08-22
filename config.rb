@@ -22,8 +22,8 @@ def simj()
         'manipulators' => [
             simshell('j', 'k', alfred('search google', 'net.deanishe.alfred-searchio')),
             simshell('j', 'semicolon', alfred('search tabs', 'net.deanishe.alfred.safari')),
-            simshell('j', 'spacebar',km('g: Get current URL from Safari')),
-            simkey('j', 'l', 'spacebar', ['command']),
+            simshell('j', 'spacebar',km('Get current URL from Safari')),
+            simkey('j', 'l', 'spacebar', ['command']), # Alfred
         ].flatten,
   )
 end
@@ -38,6 +38,7 @@ def simk()
 end
 
 # TODO: sim keys don't work properly. Like l + m together. Commented out means not working but I want it to work.
+# I think its due to how other binding JSON is being generated.
 def siml()
     puts JSON.pretty_generate(
         'description' => 'l',
@@ -47,6 +48,7 @@ def siml()
   )
 end
 
+# TODO: doesnt work!
 def simspacebar()
     puts JSON.pretty_generate(
         'description' => 'spacebar',
@@ -58,7 +60,7 @@ end
 
 def colonkey()
   puts JSON.pretty_generate(
-        'description' => 'colon - shift',
+        'description' => 'colon (shift)',
         'manipulators' => [
           key('semicolon', 'q', 'q', ['shift']),
           key('semicolon', 'w', 'w', ['shift']),
@@ -99,31 +101,15 @@ end
 
 def qkey()
   puts JSON.pretty_generate(
-        'description' => 'q - cmd + shift',
+        'description' => 'q (cmd + shift)',
         'manipulators' => [
-          key('q', 'return_or_enter', 'return_or_enter', ['command', 'shift']),
-          key('q', 'escape', 'escape', ['command', 'shift']),
-          key('q', 'delete_or_backspace', 'delete_or_backspace', ['command', 'shift']),
-          key('q', 'delete_forward', 'delete_forward', ['command', 'shift']),
-          key('q', 'tab', 'tab', ['command', 'shift']),
-          key('q', 'spacebar', 'spacebar', ['command', 'shift']),
-          key('q', 'hyphen', 'hyphen', ['command', 'shift']),
-          key('q', 'equal_sign', 'equal_sign', ['command', 'shift']),
           key('q', 'open_bracket', 'open_bracket', ['command', 'shift']),
           key('q', 'close_bracket', 'close_bracket', ['command', 'shift']),
-          key('q', 'backslash', 'backslash', ['command', 'shift']),
-          key('q', 'non_us_pound', 'non_us_pound', ['command', 'shift']),
           key('q', 'semicolon', 'semicolon', ['command', 'shift']),
           key('q', 'quote', 'quote', ['command', 'shift']),
-          key('q', 'grave_accent_and_tilde', 'grave_accent_and_tilde', ['command', 'shift']),
-          key('q', 'comma', 'comma', ['command', 'shift']),
-          key('q', 'period', 'period', ['command', 'shift']),
           key('q', 'comma', 'comma', ['command', 'shift']),
           key('q', 'period', 'period', ['command', 'shift']),
           key('q', 'slash', 'slash', ['command', 'shift']),
-          key('q', 'non_us_backslash', 'non_us_backslash', ['command', 'shift']),
-          key('q', 'slash', 'slash', ['command', 'shift']),
-          key('q', 'non_us_backslash', 'non_us_backslash', ['command', 'shift']),
           key('q', 'a', 'a', ['command', 'shift']),
           key('q', 'b', 'b', ['command', 'shift']),
           key('q', 'c', 'c', ['command', 'shift']),
@@ -166,58 +152,41 @@ end
 
 def wkey()
   puts JSON.pretty_generate(
-        'description' => 'w - apps',
+        'description' => 'w (apps)',
         'manipulators' => [
             shell('w', 'k', km('open: Safari')),
             shell('w', 'a', km('open: Dash')),
-            shell('w', 'i', km('open: Xcode')),
+            shell('w', 'i', km('open: Chrome')),
             shell('w', 'n', km('open: Bee')),
             shell('w', 't', km('open: Console')),
-            shell('w', 'period', km('open: Karabiner Elements')),
             shell('w', 'comma', km('open: Spotify')),
             shell('w', 'm', km('open: Tower')),
-            shell('w', 'v', km('open: mindnode')),
-            shell('w', 'c', km('open: script editor')),
-            shell('w', 'b', km('open: bettertouchtool')),
-            shell('w', 'r', km('open: fantastical')),
-            shell('w', 'e', km('open: trello')),
-            shell('w', 'g', km('open: snippetslab')),
+            shell('w', 'b', km('open: BetterTouchTool')),
+            shell('w', 'r', km('open: Fantastical')),
+            shell('w', 'e', km('open: Trello')),
+            shell('w', 'h', km('open: Paw')),
+            shell('w', 'g', km('open: SnippetsLab')),
             shell('w', 'f', km('open: 2do')),
-            shell('w', 'j', km('open: iterm')),
-            shell('w', 'l', km('open: sublime text')),
-            shell('w', 'semicolon', km('open: vs code')),
-            shell('w', 'o', km('open: keyboard maestro')),
+            shell('w', 'j', km('open: iTerm')),
+            shell('w', 'l', km('open: Sublime Text')),
+            shell('w', 'semicolon', km('open: VS Code')),
+            shell('w', 'o', km('open: Keyboard Maestro')),
         ].flatten,
   )
 end
 
 def ekey()
   puts JSON.pretty_generate(
-        'description' => 'e - cmd',
+        'description' => 'e (cmd)',
         'manipulators' => [
-          key('e', 'return_or_enter', 'return_or_enter', ['command']),
-          key('e', 'escape', 'escape', ['command']),
-          key('e', 'delete_or_backspace', 'delete_or_backspace', ['command']),
-          key('e', 'delete_forward', 'delete_forward', ['command']),
-          key('e', 'tab', 'tab', ['command']),
-          key('e', 'spacebar', 'spacebar', ['command']),
-          key('e', 'hyphen', 'hyphen', ['command']),
-          key('e', 'equal_sign', 'equal_sign', ['command']),
+        # key('e', 'spacebar', 'spacebar', ['command']), # TODO: change. look at private.xml
           key('e', 'open_bracket', 'open_bracket', ['command']),
           key('e', 'close_bracket', 'close_bracket', ['command']),
-          key('e', 'backslash', 'backslash', ['command']),
-          key('e', 'non_us_pound', 'non_us_pound', ['command']),
           key('e', 'semicolon', 'semicolon', ['command']),
           key('e', 'quote', 'quote', ['command']),
-          key('e', 'grave_accent_and_tilde', 'grave_accent_and_tilde', ['command']),
-          key('e', 'comma', 'comma', ['command']),
-          key('e', 'period', 'period', ['command']),
           key('e', 'comma', 'comma', ['command']),
           key('e', 'period', 'period', ['command']),
           key('e', 'slash', 'slash', ['command']),
-          key('e', 'non_us_backslash', 'non_us_backslash', ['command']),
-          key('e', 'slash', 'slash', ['command']),
-          key('e', 'non_us_backslash', 'non_us_backslash', ['command']),
           key('e', 'a', 'a', ['command']),
           key('e', 'b', 'b', ['command']),
           key('e', 'c', 'c', ['command']),
@@ -259,28 +228,21 @@ end
 
 def rkey()
   puts JSON.pretty_generate(
-        'description' => 'r - apps',
+        'description' => 'r (apps)',
         'manipulators' => [
           #key('r', 'space', 's', ['shift', 'control']), # web searches with selected text
-          shell('r', '1', km('open: hazel')),
-          shell('r', 'u', km('open: actual')),
-          shell('r', 'l', km('open: ulysses')),
-          shell('r', 'slash', km('open: little snitch configuration')),
-          shell('r', 'tab', km('open: flume')),
-          shell('r', 't', km('open: transmission')),
-          shell('r', 'p', km('open: paprika recipe manager')),
-          shell('r', 'b', km('edit: edit keyboard shortcuts')),
-          shell('r', 'comma', km('open: day one')),
-          shell('r', 'm', km('open: marked')),
-          shell('r', 's', km('open: itunes')),
-          shell('r', 'a', km('open: alfred preferences')),
-          shell('r', 'i', km('open: pixave')),
-          shell('r', 'e', km('open: reeder')),
-          shell('r', 'j', km('open: dictionary')),
-          shell('r', 'h', km('open: hammerspoon')),
-          shell('r', 'k', km('open: pdf expert')),
-          shell('r', 'w', km('open: 1password')),
-          shell('r', 'v', km('open: keychain access')),
+          shell('r', 'u', km('open: Actual')),
+          shell('r', 'l', km('open: Ulysses')),
+          shell('r', 't', km('open: Transmission')),
+          shell('r', 'p', km('open: Paprika Recipe Manager')),
+          shell('r', 'b', km('Edit keyboard shortcuts')),
+          shell('r', 'm', km('open: Marked')),
+          shell('r', 'a', km('open: Alfred Preferences')),
+          shell('r', 'i', km('open: Pixave')),
+          shell('r', 'e', km('open: Reeder')),
+          shell('r', 'j', km('open: Dictionary')),
+          shell('r', 'k', km('open: PDF Expert')),
+          shell('r', 'w', km('open: 1Password')),
           shell('r', 'n', km('open: Timing')),
          # key('r', 'o', 'f10', ['option'], ['control']), # open typinator
         ].flatten,
@@ -289,52 +251,41 @@ end
 
 def tkey()
   puts JSON.pretty_generate(
-        'description' => 't - handy actions',
+        'description' => 't (handy actions)',
         'manipulators' => [
-          shell('t', 'i', km('g: new snippetslab snippet')),
-          shell('t', 'o', km('g: new mindnode file')),
-          shell('t', 'j', km('g: goto km group of current app')),
-          shell('t', 'k', km('g: goto km group of current app from picklist')),
-          key('t', 'spacebar', 'r', ['shift', 'option', 'command']), # google translate selected text
-          shell('t', 'period', km('g: stop all macros')),
-          key('t', 's', '9', ['command', 'control']), # little snitch network monitor
-          shell('t', 'a', alfred('clean', 'nikivi.clean.folders')),
-          shell('t', 'y', alfred('gitUpdate', 'net.deanishe.alfred-git-repos')),
-          shell('t', 'w', km('per: pass')),
+          shell('t', 'k', km('Go to KM group of current app from picklist')),
+          shell('t', 'j', km('Go to KM group of current app')),
+          key('t', 'spacebar', 'r', ['shift', 'option', 'command']), # Google translate selected text
+          key('t', 's', '7', ['command', 'control']), # Little Nnitch network monitor
+          shell('t', 'a', alfred('trash desktop', 'nikivi.clean.folders')),
         ].flatten,
   )
 end
 
 def ykey()
   puts JSON.pretty_generate(
-        'description' => 'y - websites',
+        'description' => 'y (websites)',
         'manipulators' => [
-          shell('y', 'b', km('w: brilliant')),
-          shell('y', 'd', km('w: pinboard')),
-          shell('y', 'h', km('w: unsplash')),
         ].flatten,
   )
 end
 
 def ukey()
   puts JSON.pretty_generate(
-        'description' => 'u - websites',
+        'description' => 'u (websites)',
         'manipulators' => [
-          shell('u', 'e', km('w: repl')),
-          shell('u', 'd', km('w: codepen')),
-          shell('u', 'a', km('w: arxiv')),
-          shell('u', 'l', km('w: bitly')),
-          shell('u', 'x', km('w: dropbox')),
-          shell('u', 'v', km('w: twitch')),
-          shell('u', 'b', km('w: gitbook')),
-          shell('u', 'r', km('w: google drive')),
-          shell('u', 'h', km('w: khan academy')),
-          shell('u', 'spacebar', km('g: open url in safari')),
-          shell('u', 't', km('w: github trending')),
+          shell('u', 'e', km('w: Repl')),
+          shell('u', 'd', km('w: Codepen')),
+          shell('u', 'a', km('w: Arxiv')),
+          shell('u', 'x', km('w: Dropbox')),
+          shell('u', 'v', km('w: Twitch')),
+          shell('u', 'r', km('w: Google Drive')),
+          shell('u', 'h', km('w: Khan Academy')),
+          shell('u', 't', km('w: GitHub trending')),
           shell('u', 'z', km('w: MDN')),
-          shell('u', 'y', km('w: netlify')),
-          shell('u', 'g', km('w: kaggle')),
-          shell('u', 'i', km('w: wakatime')),
+          shell('u', 'y', km('w: Netlify')),
+          shell('u', 'g', km('w: Kaggle')),
+          shell('u', 'i', km('w: WakaTime')),
           shell('u', 'w', km('w: AWS')),
           shell('u', 's', km('w: NPM')),
         ].flatten,
@@ -344,7 +295,7 @@ end
 # TODO: finish
 def ikey()
   puts JSON.pretty_generate(
-        'description' => 'i - symbols',
+        'description' => 'i (symbols)',
         'manipulators' => [
           key('i', 'q', 'slash', []),
           key('i', 't', 'quote', []),
@@ -374,7 +325,7 @@ end
 
 def okey()
   puts JSON.pretty_generate(
-        'description' => 'o - alfred',
+        'description' => 'o (alfred)',
         'manipulators' => [
          key('o', '1','1',['command']),
          key('o', '2','2',['command']),
@@ -402,31 +353,16 @@ end
 
 def akey()
   puts JSON.pretty_generate(
-        'description' => 'a - ctrl',
+        'description' => 'a (ctrl)',
         'manipulators' => [
-          key('a', 'spacebar', '9', ['control', 'command']),
-          key('a', 'return_or_enter', 'return_or_enter', ['control']),
-          key('a', 'escape', 'escape', ['control']),
-          key('a', 'delete_or_backspace', 'delete_or_backspace', ['control']),
-          key('a', 'delete_forward', 'delete_forward', ['control']),
-          key('a', 'tab', 'tab', ['control']),
-          key('a', 'hyphen', 'hyphen', ['control']),
-          key('a', 'equal_sign', 'equal_sign', ['control']),
+          key('a', 'spacebar', '9', ['control', 'command']), # Google selection
           key('a', 'open_bracket', 'open_bracket', ['control']),
           key('a', 'close_bracket', 'close_bracket', ['control']),
-          key('a', 'backslash', 'backslash', ['control']),
-          key('a', 'non_us_pound', 'non_us_pound', ['control']),
           key('a', 'semicolon', 'semicolon', ['control']),
           key('a', 'quote', 'quote', ['control']),
-          key('a', 'grave_accent_and_tilde', 'grave_accent_and_tilde', ['control']),
-          key('a', 'comma', 'comma', ['control']),
-          key('a', 'period', 'period', ['control']),
           key('a', 'comma', 'comma', ['control']),
           key('a', 'period', 'period', ['control']),
           key('a', 'slash', 'slash', ['control']),
-          key('a', 'non_us_backslash', 'non_us_backslash', ['control']),
-          key('a', 'slash', 'slash', ['control']),
-          key('a', 'non_us_backslash', 'non_us_backslash', ['control']),
           key('a', 'b', 'b', ['control']),
           key('a', 'c', 'c', ['control']),
           key('a', 'd', 'd', ['control']),
@@ -468,7 +404,7 @@ end
 
 def skey()
   puts JSON.pretty_generate(
-        'description' => 's - essential',
+        'description' => 's (essential)',
         'manipulators' => [
           key('s', 'e', 'tab', []),
           key('s', 'r', 'tab', ['shift']),
@@ -493,7 +429,7 @@ end
 
 def dkey()
   puts JSON.pretty_generate(
-        'description' => 'd - mouse',
+        'description' => 'd (mouse)',
         'manipulators' => [
           key('d', 'i', 'keypad_hyphen', ['command']),
           key('d', 'o', 'keypad_plus', ['command']),
@@ -505,7 +441,7 @@ end
 
 def fkey()
   puts JSON.pretty_generate(
-        'description' => 'f - essential',
+        'description' => 'f (essential)',
         'manipulators' => [
           key('f', 'e', '8', ['option', 'command']), # alfred clipboard history search
           shell('f', 'semicolon',km('map: Think')),
@@ -526,22 +462,25 @@ end
 
 def gkey()
   puts JSON.pretty_generate(
-        'description' => 'g - things',
+        'description' => 'g (things)',
         'manipulators' => [
           key('g', 'k', 'f', ['option', 'command', 'shift']),
+          shell('g', 'i', km('New SnippetsLab snippet')),
           key('g', 'e', 'equal_sign', ['option', 'command']),
           key('g', 'm', '2', ['option', 'command', 'control']),
           key('g', 'n', 'slash', ['option', 'command']),
           shell('g', 's', km('Test')),
+          shell('g', 'l',alfred('search snippets', 'com.renfei.SnippetsLab.AlfredWorkflow')),
           shell('g', 'o', alfred('new task', 'nikivi.todo.task')),
-          shell('g', 'z',km('g: Dismiss notifications')),
+          shell('g', 'z',km('Dismiss notifications')),
+          shell('g', 'j',alfred('search km macros','iansinnott.keyboardmaestro')),
         ].flatten,
   )
 end
 
 def zkey()
   puts JSON.pretty_generate(
-        'description' => 'z - chat',
+        'description' => 'z (chat)',
         'manipulators' => [
             shell('z', 'i', km('open: Tweetbot')),
             shell('z', 'f', km('open: Spark')),
@@ -556,7 +495,7 @@ end
 
 def xkey()
   puts JSON.pretty_generate(
-        'description' => 'x - alfred',
+        'description' => 'x (alfred)',
         'manipulators' => [
             shell('x', 'l', alfred('search wiki', 'nikivi.mind')),
         ].flatten,
@@ -574,7 +513,7 @@ end
 
 def vkey()
   puts JSON.pretty_generate(
-        'description' => 'v - media',
+        'description' => 'v (media)',
         'manipulators' => [
           shell('v', 'semicolon', km('edit: Karabiner')),
           shell('v', 'a', km('edit: vimrc')),
@@ -593,7 +532,7 @@ end
 
 def bkey()
   puts JSON.pretty_generate(
-        'description' => 'b - alfred',
+        'description' => 'b (alfred)',
         'manipulators' => [
             shell('b', 'h',alfred('search hn', 'com.vitorgalvao.alfred.hackerboard')),
             shell('b', 'j', km('Clone repo to ~/src/clones')),
@@ -603,7 +542,7 @@ end
 
 def nkey()
   puts JSON.pretty_generate(
-        'description' => 'n - alfred',
+        'description' => 'n (alfred)',
         'manipulators' => [
             key('n', '1', '1', ['option']),
             key('n', '2', '2', ['option']),
@@ -623,14 +562,14 @@ end
 
 def mkey()
   puts JSON.pretty_generate(
-        'description' => 'm - spotify',
+        'description' => 'm (spotify)',
         'manipulators' => [
             key('m', 'a', '1', ['command', 'option', 'control']),
             shell('m', 's', alfred('spot_mini', 'com.vdesabou.spotify.mini.player')),
             shell('m', 'z', alfred('song_radio', 'com.vdesabou.spotify.mini.player')),
             shell('m', 'd', alfred('show_current_track', 'com.vdesabou.spotify.mini.player')),
             shell('m', 'x', alfred('web_search_current_track', 'com.vdesabou.spotify.mini.player')),
-            shell('m', 'caps_lock',km('g: Send tweet with current URL')),
+            shell('m', 'caps_lock',km('Send tweet with current URL')),
         ].flatten,
   )
 end
@@ -639,7 +578,7 @@ def commakey()
   puts JSON.pretty_generate(
         'description' => 'comma',
         'manipulators' => [
-            shell('comma', 'a',km('g: Google clipboard')),
+            shell('comma', 'a',km('Google clipboard')),
         ].flatten,
   )
 end
@@ -649,9 +588,10 @@ def tildakey()
   puts JSON.pretty_generate(
         'description' => 'tilda',
         'manipulators' => [
+            shell('grave_accent_and_tilde', 'j', km('proj: Dotfiles')),
             shell('grave_accent_and_tilde', 'k', km('proj: Knowledge')),
             shell('grave_accent_and_tilde', 'h', km('proj: Hammerspoon')),
-            key('grave_accent_and_tilde', 'spacebar', 's', ['shift', 'option', 'control']), # search selection on DuckDuckGo
+            #key('grave_accent_and_tilde', 'spacebar', 's', ['shift', 'option', 'control']), # search selection on DuckDuckGo
         ].flatten,
   )
 end
@@ -662,7 +602,7 @@ def spacebarkey()
         'description' => 'spacebar',
         'manipulators' => [
             #simshell('spacebar', 'i', alfred('search google images', 'net.deanishe.alfred-searchio')),
-            simshell('spacebar', 'n',alfred('search km macros','iansinnott.keyboardmaestro')),
+            #simshell('spacebar', 'n',alfred('search km macros','iansinnott.keyboardmaestro')),
         ].flatten,
   )
 end
