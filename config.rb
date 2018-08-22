@@ -431,10 +431,11 @@ def dkey()
   puts JSON.pretty_generate(
         'description' => 'd (mouse)',
         'manipulators' => [
-          key('d', 'i', 'keypad_hyphen', ['command']),
-          key('d', 'o', 'keypad_plus', ['command']),
+          key('d', 'i', 'keypad_hyphen', ['command']), # Zoom in
+          key('d', 'o', 'keypad_plus', ['command']), # Zoom out
           key('d', 'a', '8', ['command', 'option', 'control']),
           key('d', 'period', '3', ['command', 'option', 'control']),
+          scroll('d', 'j', 'vertical_wheel', '32')
         ].flatten,
   )
 end
@@ -484,7 +485,7 @@ def zkey()
         'manipulators' => [
             shell('z', 'i', km('open: Tweetbot')),
             shell('z', 'f', km('open: Spark')),
-            shell('z', 'g', alfred('contacts', 'nikivi.search-for-content')),
+            shell('z', 'g', alfred('search contacts', 'nikivi.search-for-content')),
             shell('z', 'e', km('open: Telegram')),
             shell('z', 'k', km('open: Telegram')),
             shell('z', 'j', km('open: Textual')),
@@ -579,6 +580,7 @@ def commakey()
         'description' => 'comma',
         'manipulators' => [
             shell('comma', 'a',km('Google clipboard')),
+            shell('comma', 'g',km('Commit my wiki')),
         ].flatten,
   )
 end

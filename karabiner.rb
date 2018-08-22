@@ -174,6 +174,64 @@ def simshell(first_key, second_key, shell_command)
 
 end
 
+# TODO: add moving mouse
+def scroll(held_key, trigger_key, direction, amount)
+  data = []
+
+  ############################################################
+
+  h = {
+    'type' => 'basic',
+    'from' => {
+      'key_code' => trigger_key,
+      'modifiers' => Karabiner.from_modifiers([], ['any']),
+    },
+    'to' => [
+      'mouse_key' => {
+        "#{direction}": amount
+      },
+    ],
+    'conditions' => [Karabiner.variable_if(held_key, 1)],
+  }
+
+  data << h
+
+  ############################################################
+
+  h = {
+    'type' => 'basic',
+    'from' => {
+      'simultaneous' => [
+        { 'key_code' => held_key},
+        { 'key_code' => trigger_key},
+      ],
+      'simultaneous_options' => {
+        'key_down_order' => 'strict',
+        'key_up_order' => 'strict_inverse',
+        'to_after_key_up' => [
+          Karabiner.set_variable(held_key, 0),
+        ],
+      },
+      'modifiers' => Karabiner.from_modifiers([], ['any']),
+    },
+    'to' => [
+      Karabiner.set_variable(held_key, 1),
+      'mouse_key' => {
+        "#{direction}": amount
+      },
+    ],
+    'parameters' => {
+      'basic.simultaneous_threshold_milliseconds' => PARAMETERS[:simultaneous_threshold_milliseconds],
+    },
+  }
+
+  data << h
+
+  ############################################################
+
+  data
+end
+
 # TODO: add ability to generate and easily modify global settings
 def globalOptions()
   data = []
