@@ -609,7 +609,7 @@ def spacebarkey()
         'description' => 'spacebar',
         'manipulators' => [
             #simshell('spacebar', 'i', alfred('search google images', 'net.deanishe.alfred-searchio')),
-            #simshell('spacebar', 'n',alfred('search km macros','iansinnott.keyboardmaestro')),
+            shell('spacebar','n',alfred('search km macros','iansinnott.keyboardmaestro')),
         ].flatten,
   )
 end

@@ -50,6 +50,8 @@ def main
   tkey()
   print(',')
   commakey()
+  print(',')
+  spacebarkey()
 end
 
 main
