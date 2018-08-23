@@ -435,7 +435,8 @@ def dkey()
           key('d', 'o', 'keypad_plus', ['command']), # Zoom out
           key('d', 'a', '8', ['command', 'option', 'control']),
           key('d', 'period', '3', ['command', 'option', 'control']),
-          scroll('d', 'j', 'vertical_wheel', '-64')
+          scroll('d', 'j', 'vertical_wheel', '40'),
+          scroll('d', 'k', 'vertical_wheel', '-40')
         ].flatten,
   )
 end
@@ -449,6 +450,7 @@ def fkey()
           key('f', 'a', '4', ['option', 'control', 'command']),
           shell('f', 'j', km('Open 1st iTerm tab')),
           shell('f', 'h', km('Make markdown link from selection')),
+          shell('f', 'comma', km('Add safari link to selected markdown text')),
           key('f', 'k', 'return_or_enter', []),
           key('f', 'z', 'spacebar', ['option']),
           key('f', 'l', 'return_or_enter', ['command']),
@@ -565,12 +567,15 @@ def mkey()
   puts JSON.pretty_generate(
         'description' => 'm (spotify)',
         'manipulators' => [
-            key('m', 'a', '1', ['command', 'option', 'control']),
+            key('m', 'a', '1', ['command', 'option', 'control']), # New Tweetbot tweet
             shell('m', 's', alfred('spot_mini', 'com.vdesabou.spotify.mini.player')),
             shell('m', 'z', alfred('song_radio', 'com.vdesabou.spotify.mini.player')),
             shell('m', 'd', alfred('show_current_track', 'com.vdesabou.spotify.mini.player')),
             shell('m', 'x', alfred('web_search_current_track', 'com.vdesabou.spotify.mini.player')),
+            shell('m', 'g', alfred('add_current_track_to_alfred_playlist_or_your_music', 'com.vdesabou.spotify.mini.player')),
+            shell('m', 'h', alfred('remove_current_track_from', 'com.vdesabou.spotify.mini.player')),
             shell('m', 'caps_lock',km('Send tweet with current URL')),
+            shell('m', 'f',km('New tweet with current URL')),
         ].flatten,
   )
 end

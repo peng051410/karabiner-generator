@@ -188,7 +188,7 @@ def scroll(held_key, trigger_key, direction, amount)
     },
     'to' => [
       'mouse_key' => {
-        "#{direction}": amount
+          "#{direction}": amount.to_i
       },
     ],
     'conditions' => [Karabiner.variable_if(held_key, 1)],
@@ -217,7 +217,7 @@ def scroll(held_key, trigger_key, direction, amount)
     'to' => [
       Karabiner.set_variable(held_key, 1),
       'mouse_key' => {
-        "#{direction}": amount
+          "#{direction}": amount.to_i
       },
     ],
     'parameters' => {
