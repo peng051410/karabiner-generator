@@ -49,9 +49,9 @@ def main
   print(',')
   tkey()
   print(',')
-  commakey()
+  ukey()
   print(',')
-  spacebarkey()
+  commakey()
 end
 
 main

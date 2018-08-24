@@ -160,6 +160,7 @@ def wkey()
             shell('w', 'n', km('open: Bee')),
             shell('w', 't', km('open: Console')),
             shell('w', 'comma', km('open: Spotify')),
+            shell('w', 'caps_lock', km('open: Finder')),
             shell('w', 'm', km('open: Tower')),
             shell('w', 'b', km('open: BetterTouchTool')),
             shell('w', 'r', km('open: Fantastical')),
@@ -510,6 +511,8 @@ def ckey()
         'description' => 'c',
         'manipulators' => [
             shell('c', 'm',km('w: GitHub notifications')),
+            shell('c', 'n',km('w: Medium')),
+            shell('c', 'semicolon',km('w: Stack Overflow')),
         ].flatten,
   )
 end
@@ -610,6 +613,16 @@ def spacebarkey()
         'manipulators' => [
             #simshell('spacebar', 'i', alfred('search google images', 'net.deanishe.alfred-searchio')),
             shell('spacebar','n',alfred('search km macros','iansinnott.keyboardmaestro')),
+        ].flatten,
+  )
+end
+
+# TODO: finish
+def capskey()
+  puts JSON.pretty_generate(
+        'description' => '',
+        'manipulators' => [
+          key('caps_lock', 'w', 'w', ['option', 'control']),
         ].flatten,
   )
 end
