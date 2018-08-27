@@ -585,11 +585,12 @@ end
 
 def commakey()
   puts JSON.pretty_generate(
-        'description' => 'comma',
-        'manipulators' => [
-            shell('comma', 'a',km('Google clipboard')),
-            shell('comma', 'g',km('Commit my wiki')),
-        ].flatten,
+    'description' => 'comma',
+    'manipulators' => [
+      newlayer('comma'),
+      layershell('comma', 'a',km('Google clipboard')),
+      layershell('comma', 'g',km('Commit my wiki')),
+    ].flatten,
   )
 end
 
