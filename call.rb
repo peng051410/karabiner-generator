@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 require_relative 'config.rb'
+require 'json'
+
+$karabiner_config_file_dir = ENV["HOME"] + '/.config/karabiner/karabiner.json'
 
 def main
-  puts gen_json([
+  $conf = [
     colonkey(),
     swapkeys(),
     simj(),
@@ -28,6 +31,8 @@ def main
     tkey(),
     ukey(),
     commakey(),
-  ])
+  ]
+
+  write_rule_to_karabiner_config_file
 end
 main

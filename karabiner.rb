@@ -3,7 +3,7 @@ require_relative 'helper.rb'
 
 # Parameters
 PARAMETERS = {
-  :simultaneous_threshold_milliseconds => 100,
+  :simultaneous_threshold_milliseconds => 250,
 }.freeze
 
 def newlayer(held_key)
