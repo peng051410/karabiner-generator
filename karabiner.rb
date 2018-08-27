@@ -3,7 +3,7 @@ require_relative 'helper.rb'
 
 # Parameters
 PARAMETERS = {
-  :simultaneous_threshold_milliseconds => 500,
+  :simultaneous_threshold_milliseconds => 100,
 }.freeze
 
 def shell(held_key, trigger_key, shell_command)
