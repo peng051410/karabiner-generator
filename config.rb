@@ -7,7 +7,7 @@ require_relative 'karabiner.rb'
 # hammerspoon://test -> tests some HS func
 
 def swapkeys()
-    puts JSON.pretty_generate(
+    JSON.pretty_generate(
         'description' => 'swap keys',
         'manipulators' => [
             swapkey('semicolon', 'semicolon', nil, ['caps_lock'], ['left_shift']), # ; -> :
@@ -17,7 +17,7 @@ def swapkeys()
 end
 
 def simj()
-    puts JSON.pretty_generate(
+    JSON.pretty_generate(
         'description' => 'j',
         'manipulators' => [
             simshell('j', 'k', alfred('search google', 'net.deanishe.alfred-searchio')),
@@ -29,7 +29,7 @@ def simj()
 end
 
 def simk()
-    puts JSON.pretty_generate(
+    JSON.pretty_generate(
         'description' => 'k',
         'manipulators' => [
             simshell('k', 'l', alfred('search dash', 'com.nikivi.own.dash')),
@@ -40,7 +40,7 @@ end
 # TODO: sim keys don't work properly. Like l + m together. Commented out means not working but I want it to work.
 # I think its due to how other binding JSON is being generated.
 def siml()
-    puts JSON.pretty_generate(
+    JSON.pretty_generate(
         'description' => 'l',
         'manipulators' => [
             #simshell('l', 'm', alfred('search bookmarks', 'net.deanishe.alfred.safari')),
@@ -50,7 +50,7 @@ end
 
 # TODO: doesnt work!
 def simspacebar()
-    puts JSON.pretty_generate(
+    JSON.pretty_generate(
         'description' => 'spacebar',
         'manipulators' => [
             simshell('spacebar', 'i', alfred('search google images', 'net.deanishe.alfred-searchio')),
@@ -59,7 +59,7 @@ def simspacebar()
 end
 
 def colonkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'colon (shift)',
         'manipulators' => [
           key('semicolon', 'q', 'q', ['shift']),
@@ -100,7 +100,7 @@ def colonkey()
 end
 
 def qkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'q (cmd + shift)',
         'manipulators' => [
           key('q', 'open_bracket', 'open_bracket', ['command', 'shift']),
@@ -151,7 +151,7 @@ def qkey()
 end
 
 def wkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'w (apps)',
         'manipulators' => [
             shell('w', 'k', km('open: Safari')),
@@ -177,7 +177,7 @@ def wkey()
 end
 
 def ekey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'e (cmd)',
         'manipulators' => [
         # key('e', 'spacebar', 'spacebar', ['command']), # TODO: change. look at private.xml
@@ -228,7 +228,7 @@ def ekey()
 end
 
 def rkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'r (apps)',
         'manipulators' => [
           #key('r', 'space', 's', ['shift', 'control']), # web searches with selected text
@@ -251,7 +251,7 @@ def rkey()
 end
 
 def tkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 't (handy actions)',
         'manipulators' => [
           shell('t', 'k', km('Go to KM group of current app from picklist')),
@@ -264,7 +264,7 @@ def tkey()
 end
 
 def ykey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'y (websites)',
         'manipulators' => [
         ].flatten,
@@ -272,7 +272,7 @@ def ykey()
 end
 
 def ukey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'u (websites)',
         'manipulators' => [
           shell('u', 'e', km('w: Repl')),
@@ -295,7 +295,7 @@ end
 
 # TODO: finish
 def ikey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'i (symbols)',
         'manipulators' => [
           key('i', 'q', 'slash', []),
@@ -325,7 +325,7 @@ def ikey()
 end
 
 def okey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'o (alfred)',
         'manipulators' => [
          key('o', '1','1',['command']),
@@ -353,7 +353,7 @@ def okey()
 end
 
 def akey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'a (ctrl)',
         'manipulators' => [
           key('a', 'spacebar', '9', ['control', 'command']), # Google selection
@@ -404,7 +404,7 @@ def akey()
 end
 
 def skey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 's (essential)',
         'manipulators' => [
           key('s', 'e', 'tab', []),
@@ -429,7 +429,7 @@ def skey()
 end
 
 def dkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'd (mouse)',
         'manipulators' => [
           key('d', 'i', 'keypad_hyphen', ['command']), # Zoom in
@@ -443,7 +443,7 @@ def dkey()
 end
 
 def fkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'f (essential)',
         'manipulators' => [
           key('f', 'e', '8', ['option', 'command']), # alfred clipboard history search
@@ -465,7 +465,7 @@ def fkey()
 end
 
 def gkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'g (things)',
         'manipulators' => [
           key('g', 'k', 'f', ['option', 'command', 'shift']),
@@ -483,7 +483,7 @@ def gkey()
 end
 
 def zkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'z (chat)',
         'manipulators' => [
             shell('z', 'i', km('open: Tweetbot')),
@@ -498,7 +498,7 @@ def zkey()
 end
 
 def xkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'x (alfred)',
         'manipulators' => [
             shell('x', 'l', alfred('search wiki', 'nikivi.mind')),
@@ -507,7 +507,7 @@ def xkey()
 end
 
 def ckey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'c',
         'manipulators' => [
             shell('c', 'm',km('w: GitHub notifications')),
@@ -518,7 +518,7 @@ def ckey()
 end
 
 def vkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'v (media)',
         'manipulators' => [
           shell('v', 'semicolon', km('edit: Karabiner')),
@@ -537,7 +537,7 @@ def vkey()
 end
 
 def bkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'b (alfred)',
         'manipulators' => [
             shell('b', 'h',alfred('search hn', 'com.vitorgalvao.alfred.hackerboard')),
@@ -547,7 +547,7 @@ def bkey()
 end
 
 def nkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'n (alfred)',
         'manipulators' => [
             key('n', '1', '1', ['option']),
@@ -567,7 +567,7 @@ def nkey()
 end
 
 def mkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'm (spotify)',
         'manipulators' => [
             key('m', 'a', '1', ['command', 'option', 'control']), # New Tweetbot tweet
@@ -584,7 +584,7 @@ def mkey()
 end
 
 def commakey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
     'description' => 'comma',
     'manipulators' => [
       newlayer('comma'),
@@ -596,7 +596,7 @@ end
 
 # TODO: doesn't work
 def tildakey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'tilda',
         'manipulators' => [
             shell('grave_accent_and_tilde', 'j', km('proj: Dotfiles')),
@@ -609,7 +609,7 @@ end
 
 # TODO: doesn't work
 def spacebarkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'spacebar',
         'manipulators' => [
             #simshell('spacebar', 'i', alfred('search google images', 'net.deanishe.alfred-searchio')),
@@ -620,7 +620,7 @@ end
 
 # TODO: finish
 def capskey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => '',
         'manipulators' => [
           key('caps_lock', 'w', 'w', ['option', 'control']),
@@ -630,12 +630,16 @@ end
 
 # TODO: doesn't work
 def rightoptkey()
-  puts JSON.pretty_generate(
+  JSON.pretty_generate(
         'description' => 'right option',
         'manipulators' => [
             shell('right_option', 'return', km('open: Safari')),
         ].flatten,
   )
+end
+
+def gen_json(arr)
+  arr.join(",")
 end
 
 # TODO: Old sim keys I used. Must move either to sim or other place.
