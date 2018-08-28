@@ -10,7 +10,7 @@ The [included config](config.rb) contains my own private keyboard configuration.
 
 To have it work you first have to create a profile in Karabiner Elements with name `generator-test`.
 
-![](https://imgur.com/HLqDc1p)
+![](https://i.imgur.com/HLqDc1p.png)
 
 ## Support
 There is a [Telegram group](https://t.me/karabinermac) you can join to ask questions and build the most awesome DSL for describing keyboard configuration.
