@@ -1,57 +1,38 @@
 #!/usr/bin/env ruby
 require_relative 'config.rb'
+require 'json'
 
-# TODO: remove need for print() statements
+$karabiner_config_file_dir = ENV["HOME"] + '/.config/karabiner/karabiner.json'
+
 def main
-  colonkey()
-  print(',')
-  swapkeys()
-  print(',')
-  simj()
-  print(',')
-  simk()
-  print(',')
-  qkey()
-  print(',')
-  wkey()
-  print(',')
-  ekey()
-  print(',')
-  rkey()
-  print(',')
-  ikey()
-  print(',')
-  okey()
-  print(',')
-  akey()
-  print(',')
-  skey()
-  print(',')
-  dkey()
-  print(',')
-  fkey()
-  print(',')
-  gkey()
-  print(',')
-  zkey()
-  print(',')
-  xkey()
-  print(',')
-  vkey()
-  print(',')
-  bkey()
-  print(',')
-  nkey()
-  print(',')
-  mkey()
-  print(',')
-  ckey()
-  print(',')
-  tkey()
-  print(',')
-  ukey()
-  print(',')
-  commakey()
-end
+  $conf = [
+    colonkey(),
+    swapkeys(),
+    simj(),
+    simk(),
+    qkey(),
+    wkey(),
+    ekey(),
+    rkey(),
+    ikey(),
+    okey(),
+    akey(),
+    skey(),
+    dkey(),
+    fkey(),
+    gkey(),
+    zkey(),
+    xkey(),
+    vkey(),
+    bkey(),
+    nkey(),
+    mkey(),
+    ckey(),
+    tkey(),
+    ukey(),
+    commakey(),
+  ]
 
+  write_rule_to_karabiner_config_file
+end
 main

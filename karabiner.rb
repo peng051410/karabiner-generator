@@ -3,8 +3,62 @@ require_relative 'helper.rb'
 
 # Parameters
 PARAMETERS = {
-  :simultaneous_threshold_milliseconds => 500,
+  :simultaneous_threshold_milliseconds => 250,
 }.freeze
+
+def newlayer(held_key)
+  data = []
+
+  ############################################################
+
+  h = {
+    'type' => 'basic',
+
+    'from' => {
+      'key_code' => held_key,
+      'modifiers' => Karabiner.from_modifiers([], ['any']),
+    },
+    'to' => [
+      Karabiner.set_variable(held_key, 1),
+    ],
+    'to_if_alone' => [
+      'key_code' => held_key,
+    ],
+    'to_after_key_up' => [
+      Karabiner.set_variable(held_key, 0),
+    ],
+  }
+
+  data << h
+
+  ############################################################
+
+  data
+end
+
+def layershell(held_key, trigger_key, shell_command)
+  data = []
+
+  ############################################################
+
+  h = {
+    'type' => 'basic',
+    'from' => {
+      'key_code' => trigger_key,
+      'modifiers' => Karabiner.from_modifiers([], ['any']),
+    },
+    'to' => [
+      'shell_command' => shell_command,
+    ],
+    'conditions' => [Karabiner.variable_if(held_key, 1)],
+  }
+
+  data << h
+
+  ############################################################
+
+  data
+end
 
 def shell(held_key, trigger_key, shell_command)
   data = []
