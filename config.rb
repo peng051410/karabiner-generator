@@ -165,7 +165,7 @@ def wkey()
       shell('w', 'b', km('open: BetterTouchTool')),
       shell('w', 'r', km('open: Fantastical')),
       shell('w', 'e', km('open: Trello')),
-      shell('w', 'h', km('open: Paw')),
+      shell('w', 'h', km('open: Xcode')),
       shell('w', 'g', km('open: SnippetsLab')),
       shell('w', 'f', km('open: 2do')),
       shell('w', 'j', km('open: iTerm')),
@@ -223,6 +223,7 @@ def ekey()
       key('e', '8', '8', ['command']),
       key('e', '9', '9', ['command']),
       key('e', '0', '0', ['command']),
+      #alfred('e', 'caps_lock', alfred('make screenshot', 'com.vitorgalvao.alfred.webscreenshot')), # Make imgur screenshot. TODO: doesnt work
     ].flatten,
   )
 end
@@ -245,6 +246,7 @@ def rkey()
       shell('r', 'k', km('open: PDF Expert')),
       shell('r', 'w', km('open: 1Password')),
       shell('r', 'n', km('open: Timing')),
+      shell('r', 'o', km('open: Affinity Designer')),
       # key('r', 'o', 'f10', ['option'], ['control']), # open typinator
     ].flatten,
   )
@@ -257,7 +259,7 @@ def tkey()
       shell('t', 'k', km('Go to KM group of current app from picklist')),
       shell('t', 'j', km('Go to KM group of current app')),
       key('t', 'spacebar', 'r', ['shift', 'option', 'command']), # Google translate selected text
-      key('t', 's', '7', ['command', 'control']), # Little Nnitch network monitor
+      key('t', 's', 'x', ['command', 'control', 'option']), # Little Nnitch network monitor
       shell('t', 'a', alfred('trash desktop', 'nikivi.clean.folders')),
     ].flatten,
   )
@@ -298,7 +300,7 @@ def ikey()
   JSON.pretty_generate(
     'description' => 'i (symbols)',
     'manipulators' => [
-      key('i', 'q', 'slash', []),
+      key('i', 'q', 'open_bracket', ['shift']),
       key('i', 't', 'quote', []),
       key('i', 'r', 'quote', ['shift']),
       key('i', 'd', 'backslash', []),
@@ -342,6 +344,7 @@ def okey()
       shell('o', 'i',alfred('search tty sessions','net.isometry.alfred.tty')),
       shell('o', 'f',alfred('search repos','net.deanishe.alfred-git-repos')),
       shell('o', 'k',alfred('search lists','nikivi.learn.anything')),
+      shell('o', 'g',alfred('search snippets','com.renfei.SnippetsLab.AlfredWorkflow')),
       shell('o', 'j',alfred('search lists','nikivi.awesome.lists')),
       shell('o', 's',alfred('search clones','com.vitorgalvao.alfred.directories')),
       shell('o', 'd',alfred('search desktop','com.vitorgalvao.alfred.directories')),
@@ -469,12 +472,16 @@ def gkey()
     'description' => 'g (things)',
     'manipulators' => [
       key('g', 'k', 'f', ['option', 'command', 'shift']),
+      key('g', 'q', '0', ['option', 'command']),
+      key('g', 'w', 'grave_accent_and_tilde', ['shift', 'command']),
+      key('g', 'semicolon', 'grave_accent_and_tilde', ['command']),
       shell('g', 'i', km('New SnippetsLab snippet')),
       key('g', 'e', 'equal_sign', ['option', 'command']),
       key('g', 'm', '2', ['option', 'command', 'control']),
       key('g', 'n', 'slash', ['option', 'command']),
       shell('g', 's', km('Test')),
-      shell('g', 'l',alfred('search snippets', 'com.renfei.SnippetsLab.AlfredWorkflow')),
+      key('g', 'l','d',['command','option','shift']),
+      key('g', 'h','a',['command','option','shift']),
       shell('g', 'o', alfred('new task', 'nikivi.todo.task')),
       shell('g', 'z',km('Dismiss notifications')),
       shell('g', 'j',alfred('search km macros','iansinnott.keyboardmaestro')),
@@ -490,9 +497,11 @@ def zkey()
       shell('z', 'f', km('open: Spark')),
       shell('z', 'g', alfred('search contacts', 'nikivi.search-for-content')),
       shell('z', 'e', km('open: Telegram')),
+      shell('z', 'n', km('Create new contact')),
       shell('z', 'k', km('open: Telegram')),
       shell('z', 'j', km('open: Textual')),
       shell('z', 'semicolon', km('w: Slack')),
+      shell('z', 'l', km('w: Discord')),
     ].flatten,
   )
 end
@@ -512,6 +521,8 @@ def ckey()
     'manipulators' => [
       shell('c', 'm',km('w: GitHub notifications')),
       shell('c', 'n',km('w: Medium')),
+      shell('c', 'j',km('w: YouTube')),
+      shell('c', 'i',km('w: regex101')),
       shell('c', 'semicolon',km('w: Stack Overflow')),
     ].flatten,
   )
@@ -522,10 +533,11 @@ def vkey()
     'description' => 'v (media)',
     'manipulators' => [
       shell('v', 'semicolon', km('edit: Karabiner')),
-      shell('v', 'a', km('edit: vimrc')),
+      shell('v', 'e', km('edit: vimrc')),
+      shell('v', 'r', km('edit: darwin.nix')),
       key('v', 'j', 'mute', []),
-      shell('v', 'd', km('Noizio change')),
-      key('v', 'z', '0', ['control', 'shift']),
+      shell('v', 'a', km('Noizio change')),
+      key('v', 's', '0', ['control', 'shift']), # Torn on/off Noizio
       key('v', 'i', 'display_brightness_decrement', []),
       key('v', 'o', 'display_brightness_increment', []),
       key('v', 'h', 'vk_consumer_previous', []),
@@ -542,6 +554,7 @@ def bkey()
     'manipulators' => [
       shell('b', 'h',alfred('search hn', 'com.vitorgalvao.alfred.hackerboard')),
       shell('b', 'j', km('Clone repo to ~/src/clones')),
+      shell('b', 'l',alfred('search snippets', 'com.renfei.SnippetsLab.AlfredWorkflow')),
     ].flatten,
   )
 end
@@ -557,11 +570,13 @@ def nkey()
       key('n', '5', '5', ['option']),
       key('n', '6', '6', ['option']),
       shell('n', 'e', alfred('search subs', 'net.deanishe.alfred-reddit')),
+      shell('n', 'd', alfred('search packages', 'com.sindresorhus.npms')),
       shell('n', 'x', alfred('search lobsters', 'nikivi.search.the.web')),
       shell('n', 'a', alfred('search shares', 'nikivi.ask.create.share')),
       shell('n', 's', alfred('search websites', 'nikivi.web.searches')),
       shell('n', 'f', alfred('search repos', 'me.lachlan.githubjump')),
       shell('n', 'g', alfred('search godoc', 'nikivi.search.the.web')),
+      shell('n', 'caps_lock', alfred('search learn anything', 'nikivi.learn.anything')),
     ].flatten,
   )
 end
@@ -623,6 +638,15 @@ def capskey()
     'description' => '',
     'manipulators' => [
       key('caps_lock', 'w', 'w', ['option', 'control']),
+    ].flatten,
+  )
+end
+
+def fourkey()
+  JSON.pretty_generate(
+    'description' => '4',
+    'manipulators' => [
+      key('4', 'j', km('test: JavaScript')), 
     ].flatten,
   )
 end
