@@ -17,6 +17,7 @@ There is a [Telegram group](https://t.me/karabinermac) you can join to ask quest
 
 ## Related
 - [Karabiner JSON Spec](https://pqrs.org/osx/karabiner/json.html)
+- [GokuRakuJoudo](https://github.com/yqrashawn/GokuRakuJoudo#readme) - Another tool to manage Karabiner configuration.
 
 ## Contributing
 [Suggestions](../../issues/) and pull requests are highly encouraged!
