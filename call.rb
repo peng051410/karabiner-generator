@@ -31,6 +31,8 @@ def main
     tkey(),
     ukey(),
     commakey(),
+    capskey(),
+    #fourkey(),
   ]
 
   write_rule_to_karabiner_config_file
